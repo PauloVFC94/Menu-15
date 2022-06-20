@@ -24,7 +24,6 @@ function RecipesProvider({ children }) {
       setLoginEmail(target.value);
     } else {
       validateLogin();
-      console.log(loginPassword.length + 1);
       setLoginPassword(target.value);
     }
   };
