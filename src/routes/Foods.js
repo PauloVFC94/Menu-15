@@ -18,7 +18,7 @@ function Foods() {
           const response = await fetch(endpoint);
           const results = await response.json();
           if (!results.meals) {
-            global.alert('Sorry, we haven\'t found any recipes for these filters');
+            global.alert('Sorry, we haven\'t found any recipes for these filters.');
           } else {
             setData(results.meals);
           }
