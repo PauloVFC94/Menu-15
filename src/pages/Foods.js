@@ -16,7 +16,11 @@ function Foods() {
           const response = await fetch(endpoint);
           const results = await response.json();
           console.log(results.meals);
-          setData(results.meals);
+          if (!results.meals) {
+            global.alert('Sorry, we haven\'t found any recipes for these filters');
+          } else {
+            setData(results.meals);
+          }
           setLoading(false);
         } catch (error) {
           setData([]);
