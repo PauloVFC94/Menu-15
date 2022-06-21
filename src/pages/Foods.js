@@ -3,12 +3,8 @@ import HeaderSearch from '../components/HeaderSearch';
 import RecipesContext from '../context/RecipesContext';
 
 function Foods() {
-  const INITIAL_DATA = {
-    noResults: 'Choose a category or search for a recipe',
-  };
-
   const { endpoint } = useContext(RecipesContext);
-  const [data, setData] = useState(INITIAL_DATA);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -18,12 +14,11 @@ function Foods() {
         try {
           const response = await fetch(endpoint);
           const results = await response.json();
+          console.log(results.meals);
           setData(results.meals);
           setLoading(false);
         } catch (error) {
-          setData({
-            noResults: 'Algo deu errado, tente fazer outra busca',
-          });
+          setData([]);
           setLoading(false);
         }
       }
@@ -35,7 +30,7 @@ function Foods() {
     <span>
       <HeaderSearch />
       { loading && <p>Carregando...</p> }
-      { !loading && data.noResults && <p>{ data.noResults }</p> }
+      { !loading && !data.length && <p>Select a category or search for a recipe</p>}
     </span>
   );
 }

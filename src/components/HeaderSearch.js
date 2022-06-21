@@ -26,6 +26,8 @@ function HeaderSearch() {
         ...prevFilters,
         search: '',
       }));
+    } else if (search === '' || endpoint === '') {
+      global.alert('Please enter your search and select one of the options');
     } else {
       setEndpoint(`${endpoint}${search}`);
     }
