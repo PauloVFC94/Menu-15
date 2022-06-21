@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Foods from './Routes/Foods';
-import Drinks from './Routes/Drinks';
+// import Foods from './Routes/Foods';
+// import Drinks from './Routes/Drinks';
 import Explore from './Routes/Explore';
 import ExploreFoods from './Routes/ExploreFoods';
 import ExploreDrinks from './Routes/ExploreDrinks';
@@ -12,15 +12,21 @@ import Profile from './Routes/Profile';
 import DoneRecipes from './Routes/DoneRecipes';
 import FavRecipes from './Routes/FavRecipes';
 import './App.css';
+import Foods from './pages/Foods';
+import Drinks from './pages/Drinks';
+import Details from './pages/Details';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Login from './pages/Login';
 
 function App() {
   return (
     <div className="meals">
       <Switch>
-        <Route exact path="/"><h1>Login</h1></Route>
+        <Route exact path="/" component={ Login } />
         <Route exact path="/foods" component={ Foods } />
         <Route exact path="/drinks" component={ Drinks } />
+        <Route path="/foods/:recipeId" component={ Details } />
+        <Route path="/drinks/:recipeId" component={ Details } />
         <Route exact path="/explore" component={ Explore } />
         <Route exact path="/explore/foods" component={ ExploreFoods } />
         <Route exact path="/explore/drinks" component={ ExploreDrinks } />
