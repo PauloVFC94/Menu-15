@@ -3,13 +3,10 @@ import PropTypes from 'prop-types';
 import RecipesContext from './RecipesContext';
 
 function RecipesProvider({ children }) {
-  const [stateA, setStateA] = useState('initialStateA');
-  const [stateB, setStateB] = useState('initialStateB');
+  const [hidden, setHidden] = useState(true);
   const contextValue = {
-    stateA,
-    setStateA,
-    stateB,
-    setStateB,
+    hidden,
+    setHidden,
   };
 
   return (
