@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import RecipesContext from './RecipesContext';
 
 function RecipesProvider({ children }) {
-  const [stateA, setStateA] = useState('initialStateA');
-  const [stateB, setStateB] = useState('initialStateB');
+  const [endpoint, setEndpoint] = useState('');
+
   const contextValue = {
-    stateA,
-    setStateA,
-    stateB,
-    setStateB,
+    endpoint,
+    setEndpoint,
   };
+
+  console.log(endpoint);
 
   return (
     <RecipesContext.Provider value={ contextValue }>

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import RecipesContext from '../context/RecipesContext';
 import { firstLetterEndpoint, ingredientEndpoint, nameEndpoint } from './helpers';
 
 function HeaderSearch() {
@@ -8,6 +9,7 @@ function HeaderSearch() {
   };
 
   const [filters, setFilters] = useState(INITIAL_FILTERS);
+  const { setEndpoint } = useContext(RecipesContext);
 
   const changeFilters = ({ target: { name, value } }) => {
     setFilters((prevFilters) => ({
@@ -25,7 +27,7 @@ function HeaderSearch() {
         search: '',
       }));
     } else {
-      // aqui precisa ter um setState vindo do context que modificará o endpoint da requisição à API
+      setEndpoint(`${endpoint}${search}`);
     }
   };
 
