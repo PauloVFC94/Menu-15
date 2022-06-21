@@ -10,8 +10,6 @@ function RecipesProvider({ children }) {
     setEndpoint,
   };
 
-  console.log(endpoint);
-
   return (
     <RecipesContext.Provider value={ contextValue }>
       {children}

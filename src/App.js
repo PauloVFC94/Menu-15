@@ -1,13 +1,15 @@
 import React from 'react';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import HeaderSearch from './components/HeaderSearch';
+import { Switch, Route } from 'react-router-dom';
+import Foods from './pages/Foods';
+import Drinks from './pages/Drinks';
 
 function App() {
   return (
-    <div>
-      <HeaderSearch />
-    </div>
+    <Switch>
+      <Route path="/foods" component={ Foods } />
+      <Route path="/drinks" component={ Drinks } />
+    </Switch>
   );
 }
 
