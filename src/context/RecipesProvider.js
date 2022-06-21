@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import RecipesContext from './RecipesContext';
 
 function RecipesProvider({ children }) {
+  const [hidden, setHidden] = useState(true);
   const [endpoint, setEndpoint] = useState('');
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
@@ -49,6 +50,8 @@ function RecipesProvider({ children }) {
     loginButtonSubmit,
     endpoint,
     setEndpoint,
+    hidden,
+    setHidden,
   };
 
   return (
