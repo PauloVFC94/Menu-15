@@ -1,23 +1,22 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 function Profile() {
   const history = useHistory();
-  const emailDoUsuario = 'ALELUIA';
-  console.log(emailDoUsuario);
+  const user = JSON.parse(localStorage.getItem('user'));
 
-  const handleClick = () => {
-    console.log('ALELUIA');
+  function clearStorage() {
     localStorage.clear();
     history.push('/');
-  };
+  }
 
   return (
     <>
       <Header title="Profile" />
       <section>
-        <p data-testid="profile-email">{emailDoUsuario}</p>
+        <p data-testid="profile-email">{ user.email }</p>
         <button
           type="button"
           data-testid="profile-done-btn"
@@ -35,7 +34,7 @@ function Profile() {
         <button
           type="button"
           data-testid="profile-logout-btn"
-          onClick={ handleClick }
+          onClick={ clearStorage }
         >
           Logout
         </button>

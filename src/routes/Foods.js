@@ -4,6 +4,7 @@ import { RECIPES_LIMIT } from '../components/helpers';
 import RecipeCard from '../components/RecipeCard';
 import RecipesContext from '../context/RecipesContext';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 function Foods() {
   const { endpoint } = useContext(RecipesContext);
@@ -51,6 +52,7 @@ function Foods() {
           />
         ))
       )}
+      <Footer />
     </span>
   );
 }
