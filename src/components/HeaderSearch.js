@@ -16,6 +16,19 @@ function HeaderSearch() {
     }));
   };
 
+  const filterResults = () => {
+    const { search, endpoint } = filters;
+    if (search.length > 1 && endpoint === firstLetterEndpoint) {
+      global.alert('Your search must have only 1 (one) character');
+      setFilters((prevFilters) => ({
+        ...prevFilters,
+        search: '',
+      }));
+    } else {
+      // aqui precisa ter um setState vindo do context que modificará o endpoint da requisição à API
+    }
+  };
+
   return (
     <span className="search-header">
       <input
@@ -62,6 +75,7 @@ function HeaderSearch() {
       <button
         type="button"
         data-testid="exec-search-btn"
+        onClick={ filterResults }
       >
         Search
       </button>
