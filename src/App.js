@@ -1,22 +1,20 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-// import Foods from './Routes/Foods';
-// import Drinks from './Routes/Drinks';
-import Explore from './Routes/Explore';
-import ExploreFoods from './Routes/ExploreFoods';
-import ExploreDrinks from './Routes/ExploreDrinks';
-import FoodsIngredients from './Routes/FoodsIngredients';
-import DrinksIngredients from './Routes/DrinksIngredients';
-import FoodsNationalities from './Routes/FoodsNationalities';
-import Profile from './Routes/Profile';
-import DoneRecipes from './Routes/DoneRecipes';
-import FavRecipes from './Routes/FavRecipes';
+import Foods from './routes/Foods';
+import Drinks from './routes/Drinks';
+import Explore from './routes/Explore';
+import ExploreFoods from './routes/ExploreFoods';
+import ExploreDrinks from './routes/ExploreDrinks';
+import FoodsIngredients from './routes/FoodsIngredients';
+import DrinksIngredients from './routes/DrinksIngredients';
+import FoodsNationalities from './routes/FoodsNationalities';
+import Profile from './routes/Profile';
+import DoneRecipes from './routes/DoneRecipes';
+import FavRecipes from './routes/FavRecipes';
 import './App.css';
-import Foods from './pages/Foods';
-import Drinks from './pages/Drinks';
-import Details from './pages/Details';
+import Login from './routes/Login';
+import Details from './routes/Details';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from './pages/Login';
 
 function App() {
   return (

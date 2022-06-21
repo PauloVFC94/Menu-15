@@ -2,10 +2,11 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import RecipesContext from '../context/RecipesContext';
+import HeaderSearch from './HeaderSearch';
 import ProfileIcon from '../images/profileIcon.svg';
 import SearchIcon from '../images/searchIcon.svg';
 
-function Header({ title, searchIcon }) {
+function Header({ title, searchIcon, page }) {
   const { hidden, setHidden } = useContext(RecipesContext);
 
   const renderSearchIcon = () => (
@@ -34,9 +35,7 @@ function Header({ title, searchIcon }) {
       </div>
 
       { hidden ? <span hidden>oi</span>
-        : (
-          <input data-testid="search-input" type="text" />
-        ) }
+        : <HeaderSearch page={ page } /> }
     </header>
   );
 }

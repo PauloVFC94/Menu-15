@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import HeaderSearch from '../components/HeaderSearch';
 import { RECIPES_LIMIT } from '../components/helpers';
 import RecipeCard from '../components/RecipeCard';
 import RecipesContext from '../context/RecipesContext';
+import Header from '../components/Header';
 
 function Foods() {
   const { endpoint } = useContext(RecipesContext);
@@ -39,7 +39,7 @@ function Foods() {
 
   return (
     <span>
-      <HeaderSearch page="foods" />
+      <Header title="Foods" searchIcon page="foods" />
       { loading && <p>Carregando...</p> }
       { !loading && data.length > 1 && (
         data.slice(0, RECIPES_LIMIT).map((recipe, index) => (
