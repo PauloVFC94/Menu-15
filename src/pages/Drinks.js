@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import HeaderSearch from '../components/HeaderSearch';
+import { RECIPES_LIMIT } from '../components/helpers';
+import RecipeCard from '../components/RecipeCard';
 import RecipesContext from '../context/RecipesContext';
 
 function Drinks() {
@@ -15,7 +17,6 @@ function Drinks() {
         try {
           const response = await fetch(endpoint);
           const results = await response.json();
-          console.log(results.drinks);
           setData(results.drinks);
           setLoading(false);
         } catch (error) {
@@ -37,7 +38,16 @@ function Drinks() {
     <span>
       <HeaderSearch page="drinks" />
       { loading && <p>Carregando...</p> }
-      { !loading && !data.length && <p>Select a category or search for a recipe</p>}
+      { !loading && data.length > 1 && (
+        data.slice(0, RECIPES_LIMIT).map((recipe, index) => (
+          <RecipeCard
+            key={ recipe.idDrink }
+            type="Drink"
+            recipe={ recipe }
+            index={ index }
+          />
+        ))
+      )}
     </span>
   );
 }

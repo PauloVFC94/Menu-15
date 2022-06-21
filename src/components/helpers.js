@@ -10,3 +10,5 @@ export const drinksEndpoints = {
   nameEndpoint: 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=',
   firstLetterEndpoint: 'https://www.thecocktaildb.com/api/json/v1/1/search.php?f=',
 };
+
+export const RECIPES_LIMIT = 12;
