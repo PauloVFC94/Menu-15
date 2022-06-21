@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
+import PropTypes from 'prop-types';
 import RecipesContext from '../context/RecipesContext';
-import { firstLetterEndpoint, ingredientEndpoint, nameEndpoint } from './helpers';
+import { drinksEndpoints, mealsEndpoints } from './helpers';
 
-function HeaderSearch() {
+function HeaderSearch({ page }) {
   const INITIAL_FILTERS = {
     search: '',
     endpoint: '',
@@ -20,7 +21,15 @@ function HeaderSearch() {
 
   const filterResults = () => {
     const { search, endpoint } = filters;
-    if (search.length > 1 && endpoint === firstLetterEndpoint) {
+    const verifiesSearchMeal = (
+      search.length > 1
+      && endpoint === mealsEndpoints.firstLetterEndpoint
+    );
+    const verifiesSearchDrink = (
+      search.length > 1
+      && endpoint === drinksEndpoints.firstLetterEndpoint
+    );
+    if (verifiesSearchMeal || verifiesSearchDrink) {
       global.alert('Your search must have only 1 (one) character');
       setFilters((prevFilters) => ({
         ...prevFilters,
@@ -49,7 +58,10 @@ function HeaderSearch() {
           id="ingredient-search-radio"
           type="radio"
           name="endpoint"
-          value={ ingredientEndpoint }
+          value={
+            page === 'foods'
+              ? mealsEndpoints.ingredientEndpoint : drinksEndpoints.ingredientEndpoint
+          }
           onChange={ changeFilters }
           data-testid="ingredient-search-radio"
         />
@@ -60,7 +72,10 @@ function HeaderSearch() {
           id="name-search-radio"
           type="radio"
           name="endpoint"
-          value={ nameEndpoint }
+          value={
+            page === 'foods'
+              ? mealsEndpoints.nameEndpoint : drinksEndpoints.nameEndpoint
+          }
           onChange={ changeFilters }
           data-testid="name-search-radio"
         />
@@ -71,7 +86,10 @@ function HeaderSearch() {
           id="first-letter-search-radio"
           type="radio"
           name="endpoint"
-          value={ firstLetterEndpoint }
+          value={
+            page === 'foods'
+              ? mealsEndpoints.firstLetterEndpoint : drinksEndpoints.firstLetterEndpoint
+          }
           onChange={ changeFilters }
           data-testid="first-letter-search-radio"
         />
@@ -86,5 +104,9 @@ function HeaderSearch() {
     </span>
   );
 }
+
+HeaderSearch.propTypes = {
+  page: PropTypes.string.isRequired,
+};
 
 export default HeaderSearch;

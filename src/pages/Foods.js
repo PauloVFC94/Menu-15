@@ -28,7 +28,7 @@ function Foods() {
 
   return (
     <span>
-      <HeaderSearch />
+      <HeaderSearch page="foods" />
       { loading && <p>Carregando...</p> }
       { !loading && !data.length && <p>Select a category or search for a recipe</p>}
     </span>
