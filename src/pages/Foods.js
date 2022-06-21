@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import HeaderSearch from '../components/HeaderSearch';
 import RecipesContext from '../context/RecipesContext';
 
@@ -25,6 +26,11 @@ function Foods() {
     };
     getData();
   }, [endpoint]);
+
+  if (data.length === 1) {
+    const [recipe] = data;
+    return <Redirect to={ `/foods/${recipe.idMeal}` } />;
+  }
 
   return (
     <span>
