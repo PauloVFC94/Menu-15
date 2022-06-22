@@ -21,6 +21,7 @@ function Drinks() {
             global.alert('Sorry, we haven\'t found any recipes for these filters.');
           } else {
             setData(results.drinks);
+            console.log(results.drinks);
           }
           setLoading(false);
         } catch (error) {
