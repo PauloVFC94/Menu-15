@@ -12,30 +12,30 @@ function Footer() {
       <div id="navLinks">
         <button
           type="button"
-          data-testid="drinks-bottom-btn"
           onClick={ () => { history.push('/drinks'); } }
         >
           <img
+            data-testid="drinks-bottom-btn"
             src={ drinkIcon }
             alt="drinks-icon"
           />
         </button>
         <button
           type="button"
-          data-testid="explore-bottom-btn"
           onClick={ () => { history.push('/explore'); } }
         >
           <img
+            data-testid="explore-bottom-btn"
             src={ exploreIcon }
             alt="explore-icon"
           />
         </button>
         <button
           type="button"
-          data-testid="food-bottom-btn"
           onClick={ () => { history.push('foods'); } }
         >
           <img
+            data-testid="food-bottom-btn"
             src={ mealIcon }
             alt="food-icon"
           />

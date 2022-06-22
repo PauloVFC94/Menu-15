@@ -5,7 +5,11 @@ import Footer from '../components/Footer';
 
 function Profile() {
   const history = useHistory();
-  const user = JSON.parse(localStorage.getItem('user'));
+  let user = { email: 'EUREKA.com.br@gmail.com' };
+  const nameUser = JSON.parse(localStorage.getItem('user'));
+  if (nameUser) {
+    user = nameUser;
+  }
 
   function clearStorage() {
     localStorage.clear();
