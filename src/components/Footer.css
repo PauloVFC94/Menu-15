@@ -6,8 +6,3 @@ footer {
   text-align: center;
   width: 100%;
 }
-
-#navLinks {
-  display: flex;
-  justify-content: space-around;
-} 

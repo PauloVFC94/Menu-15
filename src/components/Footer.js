@@ -9,7 +9,7 @@ function Footer() {
   const history = useHistory();
   return (
     <footer data-testid="footer">
-      <div id="navLinks">
+      <div className="d-flex justify-content-around">
         <button
           type="button"
           onClick={ () => { history.push('/drinks'); } }
