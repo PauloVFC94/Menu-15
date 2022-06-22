@@ -17,10 +17,14 @@ function Drinks() {
         try {
           const response = await fetch(endpoint);
           const results = await response.json();
-          setData(results.drinks);
+          if (!results.drinks) {
+            global.alert('Sorry, we haven\'t found any recipes for these filters.');
+          } else {
+            setData(results.drinks);
+          }
           setLoading(false);
         } catch (error) {
-          global.alert('Sorry, we haven\'t found any recipes for these filters');
+          global.alert('Sorry, we haven\'t found any recipes for these filters.');
           setData([]);
           setLoading(false);
         }
