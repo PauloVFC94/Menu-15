@@ -10,11 +10,7 @@ function Header({ title, searchIcon, page }) {
   const { hidden, setHidden } = useContext(RecipesContext);
 
   const renderSearchIcon = () => (
-    <button
-      src={ SearchIcon }
-      type="button"
-      onClick={ () => setHidden(!hidden) }
-    >
+    <button type="button" onClick={ () => setHidden(!hidden) }>
       <img data-testid="search-top-btn" src={ SearchIcon } alt="Search Icon" />
     </button>
   );
