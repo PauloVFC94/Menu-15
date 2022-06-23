@@ -14,8 +14,8 @@ function RecipeInProgress({ location: { pathname } }) {
       try {
         const response = await fetch(endpoint);
         const results = await response.json();
-        console.log(results);
         const [recipe] = results[`${type === 'Meal' ? 'meals' : 'drinks'}`];
+        console.log(recipe);
         setData(recipe);
         setLoading(false);
       } catch (error) {
