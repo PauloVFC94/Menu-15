@@ -1,25 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import shareIcon from '../images/shareIcon.svg';
 
 function RecipeCard({ recipe, index }) {
-  console.log(recipe);
   return (
     <div data-testid={ `${index}-recipe-card` }>
       <img
         src={ recipe.image }
         alt={ `${recipe.name} thumbnail` }
         data-testid={ `${index}-horizontal-image` }
-        width="150px"
+        width="100px"
       />
-      <p data-testid={ `${index}-horizontal-top-text` }>
-        { `${recipe.nationality} - ${recipe.category}` }
-      </p>
+      <div>
+        <p data-testid={ `${index}-horizontal-top-text` }>
+          { `${recipe.nationality} - ${recipe.category}` }
+        </p>
+        <img
+          src={ shareIcon }
+          alt="shareIcon"
+          data-testid={ `${index}-horizontal-share-btn` }
+        />
+      </div>
       <h5 data-testid={ `${index}-horizontal-name` }>
         { recipe.name }
       </h5>
       <p data-testid={ `${index}-horizontal-done-date` }>
         { `Done in: ${recipe.doneDate}` }
       </p>
+      <div>
+        { recipe.tags.map((tag) => (
+          <span
+            key={ tag }
+            data-testid={ `${index}-${tag}-horizontal-tag` }
+          >
+            { ` ${tag} ` }
+          </span>
+        )) }
+      </div>
     </div>
   );
 }
