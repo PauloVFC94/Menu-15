@@ -1,30 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function RecipeCard({ type, recipe, index }) {
+function RecipeCard({ recipe, index }) {
+  console.log(recipe);
   return (
-    <span
-      data-testid={ `${index}-recipe-card` }
-    >
+    <div data-testid={ `${index}-recipe-card` }>
       <img
-        src={ recipe[`str${type}Thumb`] }
-        alt={ `${recipe[`str${type}`]} thumbnail` }
-        data-testid={ `${index}-card-img` }
-        width="200px"
+        src={ recipe.image }
+        alt={ `${recipe.name} thumbnail` }
+        data-testid={ `${index}-horizontal-image` }
+        width="150px"
       />
-      <p
-        data-testid={ `${index}-card-name` }
-      >
-        {recipe[`str${type}`]}
+      <p data-testid={ `${index}-horizontal-top-text` }>
+        { `${recipe.nationality} - ${recipe.category}` }
       </p>
-    </span>
+      <h5 data-testid={ `${index}-horizontal-name` }>
+        { recipe.name }
+      </h5>
+      <p data-testid={ `${index}-horizontal-done-date` }>
+        { `Done in: ${recipe.doneDate}` }
+      </p>
+    </div>
   );
 }
 
 RecipeCard.propTypes = {
-  recipe: PropTypes.objectOf(PropTypes.any).isRequired,
-  index: PropTypes.number.isRequired,
-  type: PropTypes.string.isRequired,
-};
+  recipe: PropTypes.objectOf(PropTypes.any),
+  index: PropTypes.number,
+  type: PropTypes.string,
+}.isRequired;
 
 export default RecipeCard;
