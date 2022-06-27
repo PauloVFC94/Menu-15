@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import RecipesContext from './RecipesContext';
 
 function RecipesProvider({ children }) {
@@ -9,6 +10,7 @@ function RecipesProvider({ children }) {
   const [loginPassword, setLoginPassword] = useState('');
   const [loginButton, setLoginButton] = useState(true);
   const [loginComplete, setLoginComplete] = useState(false);
+  const history = useHistory();
 
   const validateLogin = () => {
     const minPassword = 6;
@@ -32,9 +34,24 @@ function RecipesProvider({ children }) {
 
   const loginButtonSubmit = (event) => {
     event.preventDefault();
+    const inProgress = {
+      cocktails: {
+      },
+      meals: {
+      },
+    };
     localStorage.setItem('mealsToken', 1);
     localStorage.setItem('cocktailsToken', 1);
     localStorage.setItem('user', JSON.stringify({ email: loginEmail }));
+    if (localStorage.getItem('favoriteRecipes') === null) {
+      localStorage.setItem('favoriteRecipes', JSON.stringify([]));
+    }
+    if (localStorage.getItem('inProgressRecipes') === null) {
+      localStorage.setItem('inProgressRecipes', JSON.stringify(inProgress));
+    }
+    if (localStorage.getItem('doneRecipes') === null) {
+      localStorage.setItem('doneRecipes', JSON.stringify([]));
+    }
     setLoginComplete(true);
   };
 
@@ -52,6 +69,7 @@ function RecipesProvider({ children }) {
     setEndpoint,
     hidden,
     setHidden,
+    history,
   };
 
   return (
