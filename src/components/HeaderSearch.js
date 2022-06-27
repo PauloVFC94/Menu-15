@@ -43,7 +43,7 @@ function HeaderSearch({ page }) {
   };
 
   return (
-    <span className="search-header">
+    <form className="search-header">
       <input
         type="text"
         name="search"
@@ -101,7 +101,7 @@ function HeaderSearch({ page }) {
       >
         Search
       </button>
-    </span>
+    </form>
   );
 }
 
