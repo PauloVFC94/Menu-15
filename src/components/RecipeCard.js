@@ -3,9 +3,14 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
 
-function RecipeCard({ recipe, index }) {
+function RecipeCard({ copiedMsg, recipe, index }) {
   const recipeTags = recipe.tags.filter((tag, tagIndex) => tagIndex < 2);
   const history = useHistory();
+
+  const copyLink = (link) => {
+    navigator.clipboard.writeText(link);
+    copiedMsg();
+  };
 
   return (
     <div data-testid={ `${index}-recipe-card` }>
@@ -32,11 +37,16 @@ function RecipeCard({ recipe, index }) {
               { recipe.alcoholicOrNot }
             </p>
           ) }
-        <img
-          src={ shareIcon }
-          alt="shareIcon"
-          data-testid={ `${index}-horizontal-share-btn` }
-        />
+        <button
+          type="button"
+          onClick={ () => copyLink(`http://localhost:3000/${recipe.type}s/${recipe.id}`) }
+        >
+          <img
+            src={ shareIcon }
+            alt="shareIcon"
+            data-testid={ `${index}-horizontal-share-btn` }
+          />
+        </button>
       </div>
 
       <button
