@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import { getEndpointByPathname } from '../components/helpers/endpoints';
 import { getIngredients, getMeasures } from '../components/helpers/ingredients';
 import shareBtn from '../images/shareIcon.svg';
@@ -15,6 +16,7 @@ function RecipeInProgress({ location: { pathname } }) {
   const [loading, setLoading] = useState(false);
   const [checkedInputs, setCheckedInputs] = useState([]);
   const [numberOfIngredients, setNumberOfIngredients] = useState(0);
+  const [shouldRedirect, setShouldRedirect] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
@@ -46,6 +48,8 @@ function RecipeInProgress({ location: { pathname } }) {
   };
 
   if (loading) return <p>Carregando...</p>;
+
+  if (shouldRedirect) return <Redirect to="/done-recipes" />;
 
   return (
     <span>
@@ -117,6 +121,7 @@ function RecipeInProgress({ location: { pathname } }) {
         data-testid="finish-recipe-btn"
         className={ styles.fixedBtn }
         disabled={ numberOfIngredients !== checkedInputs.length }
+        onClick={ () => setShouldRedirect(true) }
       >
         Finish recipe
       </button>
