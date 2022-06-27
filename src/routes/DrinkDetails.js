@@ -92,7 +92,7 @@ function DrinkDetails({ match: { params: { recipeId } } }) {
             setIsFavorite={ setIsFavorite }
           />
           <h2>Ingredients</h2>
-          <div id="drink-ingredients">
+          <div className="drink-ingredients">
             { ingredients.map((ingredient, i) => (
               (detailsRecipe[ingredients[i]] !== null) && (
                 <p
@@ -106,7 +106,7 @@ function DrinkDetails({ match: { params: { recipeId } } }) {
           </div>
           <h2>Instructions</h2>
           <p
-            id="drink-instructions"
+            className="drink-instructions"
             data-testid="instructions"
           >
             { detailsRecipe.strInstructions }

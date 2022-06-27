@@ -8,7 +8,7 @@ function Login() {
     loginButtonSubmit,
     loginComplete } = useContext(RecipesContext);
   return (
-    <form id="form-login">
+    <form className="form-login">
       <input
         name="loginEmail"
         type="email"
@@ -24,7 +24,7 @@ function Login() {
       <button
         data-testid="login-submit-btn"
         type="button"
-        id="login-btn"
+        className="login-btn"
         disabled={ loginButton }
         onClick={ loginButtonSubmit }
       >

@@ -24,6 +24,7 @@ function FoodDetailsHeader(props) {
             src={ thumbnail }
             alt={ title }
             data-testid="recipe-photo"
+            className="header-div-img"
           />
           <h1 data-testid="recipe-title">{ title }</h1>
           <h4 data-testid="recipe-category">{ category }</h4>
@@ -33,32 +34,32 @@ function FoodDetailsHeader(props) {
         <div>
           <button
             type="button"
-            id="btn-details"
+            className="btn-details"
             onClick={ (event) => shareFunction(event, path) }
           >
             <img
               src={ shareIcon }
               alt="share-icon"
               data-testid="share-btn"
-              id="img-share"
+              className="img-share"
             />
           </button>
           { isFavorite ? (
             <button
               type="button"
               onClick={ (event) => removeFavorite(event, id, setIsFavorite) }
-              id="btn-details"
+              className="btn-details"
             >
               <img
                 src={ favoriteIcon2 }
                 alt="favorite-icon"
                 data-testid="favorite-btn"
-                id="img-favorite"
+                className="img-favorite"
               />
             </button>
           ) : (
             <button
-              id="btn-details"
+              className="btn-details"
               type="button"
               onClick={ (event) => favoriteFunction(event, details, setIsFavorite) }
             >
@@ -66,7 +67,7 @@ function FoodDetailsHeader(props) {
                 src={ favoriteIcon }
                 alt="favorite-icon"
                 data-testid="favorite-btn"
-                id="img-favorite"
+                className="img-favorite"
               />
             </button>
           )}

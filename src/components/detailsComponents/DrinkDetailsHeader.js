@@ -24,20 +24,21 @@ function DrinkDetailsHeader(props) {
             src={ thumbnailDrink }
             alt={ titleDrink }
             data-testid="recipe-photo"
+            className="header-div-img"
           />
-          <h1 data-testid="recipe-title" id="drink-title">{ titleDrink }</h1>
+          <h1 data-testid="recipe-title" className="drink-title">{ titleDrink }</h1>
         </div>
         <h4 data-testid="recipe-category">{ alcoholic }</h4>
       </div>
       <div id="button-div">
         <div>
           <button
-            id="btn-details"
+            className="btn-details"
             type="button"
             onClick={ (event) => shareFunction(event, path) }
           >
             <img
-              id="img-share"
+              className="img-share"
               src={ shareIcon }
               alt="share-icon"
               data-testid="share-btn"
@@ -46,11 +47,11 @@ function DrinkDetailsHeader(props) {
           { isFavorite ? (
             <button
               type="button"
-              id="btn-details"
+              className="btn-details"
               onClick={ (event) => removeFavorite(event, id, setIsFavorite) }
             >
               <img
-                id="img-favorite"
+                className="img-favorite"
                 src={ favoriteIcon2 }
                 alt="favorite-icon"
                 data-testid="favorite-btn"
@@ -59,11 +60,11 @@ function DrinkDetailsHeader(props) {
           ) : (
             <button
               type="button"
-              id="btn-details"
+              className="btn-details"
               onClick={ (event) => favoriteFunction(event, details, setIsFavorite) }
             >
               <img
-                id="img-favorite"
+                className="img-favorite"
                 src={ favoriteIcon }
                 alt="favorite-icon"
                 data-testid="favorite-btn"

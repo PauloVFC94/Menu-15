@@ -15,17 +15,18 @@ input {
   width: 150px;
 }
 
-#form-login {
+.form-login {
   align-items: center;
   display: flex;
   flex-direction: column;
   margin-top: 200px;
 }
 
-#login-btn {
-  width: 150px;
+.login-btn {
   height: 50px;
+  width: 150px;
 }
+
 .rocksGlass {
   animation: shake 1s infinite ease;
   max-height: 80vh;

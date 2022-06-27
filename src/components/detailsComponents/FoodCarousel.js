@@ -64,7 +64,7 @@ function FoodCarousel(props) {
     <div className="carousel-int-div">
       <button
         type="button"
-        id="button-left"
+        className="button-left"
         onClick={ (event) => leftFunction(event) }
       >
         ←
@@ -133,7 +133,7 @@ function FoodCarousel(props) {
       </Link>
       <button
         type="button"
-        id="button-right"
+        className="button-right"
         onClick={ (event) => rightFunction(event) }
       >
         →
