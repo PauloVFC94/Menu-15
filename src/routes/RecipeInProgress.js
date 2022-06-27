@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import {
-  getEndpointByPathname, getIngredients, getMeasures } from '../components/helpers';
+import { getEndpointByPathname } from '../components/helpers/endpoints';
+import { getIngredients, getMeasures } from '../components/helpers/ingredients';
 import shareBtn from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import styles from '../styles/RecipeInProgress.module.css';
+import {
+  getCheckedIngredients, removeInProgressLS, saveInProgressLS, startInProgressLS,
+} from '../components/helpers/localStorage';
 
 function RecipeInProgress({ location: { pathname } }) {
   const type = pathname.includes('foods') ? 'Meal' : 'Drink';
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [checks, setChecks] = useState(0);
-  const [isDisabled, setIsDisabled] = useState({
-    numberOfIngredients: 0,
-    bool: true,
-  });
+  const [checkedInputs, setCheckedInputs] = useState([]);
+  const [numberOfIngredients, setNumberOfIngredients] = useState(0);
 
   useEffect(() => {
     const getData = async () => {
@@ -25,11 +25,9 @@ function RecipeInProgress({ location: { pathname } }) {
         const results = await response.json();
         const [recipe] = results[`${type === 'Meal' ? 'meals' : 'drinks'}`];
         setData(recipe);
-        setIsDisabled((prevIsDisabled) => ({
-          ...prevIsDisabled,
-          numberOfIngredients: getIngredients(recipe).length,
-          bool: true,
-        }));
+        setNumberOfIngredients(getIngredients(recipe).length);
+        startInProgressLS();
+        setCheckedInputs(getCheckedIngredients(recipe[`id${type}`], type));
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -38,15 +36,13 @@ function RecipeInProgress({ location: { pathname } }) {
     getData();
   }, [pathname, type]);
 
-  useEffect(() => {
-    setIsDisabled((prevIsDisabled) => ({
-      ...prevIsDisabled,
-      bool: prevIsDisabled.numberOfIngredients !== checks,
-    }));
-  }, [checks]);
-
-  const handleCheck = ({ target: { checked } }) => {
-    setChecks((prevChecks) => (checked ? prevChecks + 1 : prevChecks - 1));
+  const handleCheck = ({ target: { checked, value } }) => {
+    if (checked) {
+      saveInProgressLS(data[`id${type}`], type, value);
+    } else {
+      removeInProgressLS(data[`id${type}`], type, value);
+    }
+    setCheckedInputs(getCheckedIngredients(data[`id${type}`], type));
   };
 
   if (loading) return <p>Carregando...</p>;
@@ -97,11 +93,15 @@ function RecipeInProgress({ location: { pathname } }) {
             <input
               id={ ingredient }
               type="checkbox"
+              value={ index + 1 }
               onChange={ handleCheck }
+              checked={ checkedInputs.includes(JSON.stringify(index + 1)) }
             />
-            {`${ingredient} ${
-              getMeasures(data)[index] ? `- ${getMeasures(data)[index]}` : ''
-            }`}
+            <span>
+              {`${ingredient} ${
+                getMeasures(data)[index] ? `- ${getMeasures(data)[index]}` : ''
+              }`}
+            </span>
           </label>
         )) }
       </span>
@@ -116,7 +116,7 @@ function RecipeInProgress({ location: { pathname } }) {
         type="button"
         data-testid="finish-recipe-btn"
         className={ styles.fixedBtn }
-        disabled={ isDisabled.bool }
+        disabled={ numberOfIngredients !== checkedInputs.length }
       >
         Finish recipe
       </button>

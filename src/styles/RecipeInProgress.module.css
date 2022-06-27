@@ -14,3 +14,7 @@
 .recipePhoto {
   width: 100%;
 }
+
+:checked + span {
+  text-decoration: line-through;
+}
