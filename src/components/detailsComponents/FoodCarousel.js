@@ -143,12 +143,12 @@ function FoodCarousel(props) {
 }
 
 FoodCarousel.propTypes = {
-  i1: PropTypes.string.isRequired,
-  i2: PropTypes.string.isRequired,
-  i3: PropTypes.string.isRequired,
-  i4: PropTypes.string.isRequired,
-  i5: PropTypes.string.isRequired,
-  i6: PropTypes.string.isRequired,
+  i1: PropTypes.objectOf(PropTypes.any).isRequired,
+  i2: PropTypes.objectOf(PropTypes.any).isRequired,
+  i3: PropTypes.objectOf(PropTypes.any).isRequired,
+  i4: PropTypes.objectOf(PropTypes.any).isRequired,
+  i5: PropTypes.objectOf(PropTypes.any).isRequired,
+  i6: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default FoodCarousel;

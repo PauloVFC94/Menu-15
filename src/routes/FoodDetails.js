@@ -55,7 +55,6 @@ function FoodDetails({ match: { params: { recipeId } } }) {
     };
     return obj;
   });
-  console.log(recomendationObject);
 
   const [isFavorite, setIsFavorite] = useState(false);
   const [isDone, setIsDone] = useState(false);

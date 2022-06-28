@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
-import { getEndpointByPathname } from '../components/helpers/endpoints';
+import {
+  categoryOrAlcoholic,
+  favoriteButton,
+  favoriteImage, getEndpointByPathname, shareButton,
+} from '../components/helpers/endpoints';
 import { getIngredients, getMeasures } from '../components/helpers/ingredients';
 import shareBtn from '../images/shareIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import styles from '../styles/RecipeInProgress.module.css';
 import {
   getCheckedIngredients, removeInProgressLS, saveInProgressLS, startInProgressLS,
 } from '../components/helpers/localStorage';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 
 function RecipeInProgress({ location: { pathname } }) {
   const type = pathname.includes('foods') ? 'Meal' : 'Drink';
@@ -17,6 +21,8 @@ function RecipeInProgress({ location: { pathname } }) {
   const [checkedInputs, setCheckedInputs] = useState([]);
   const [numberOfIngredients, setNumberOfIngredients] = useState(0);
   const [shouldRedirect, setShouldRedirect] = useState(false);
+  const [favImage, setFavImage] = useState(whiteHeartIcon);
+  const [linkCopied, setLinkCopied] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
@@ -30,6 +36,7 @@ function RecipeInProgress({ location: { pathname } }) {
         setNumberOfIngredients(getIngredients(recipe).length);
         startInProgressLS();
         setCheckedInputs(getCheckedIngredients(recipe[`id${type}`], type));
+        setFavImage(favoriteImage(recipe[`id${type}`]));
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -65,24 +72,33 @@ function RecipeInProgress({ location: { pathname } }) {
         <p
           data-testid="recipe-category"
         >
-          { data[`${type === 'Meal' ? 'strCategory' : 'strAlcoholic'}`] }
+          { data[`${categoryOrAlcoholic(type)}`] }
         </p>
         <button
           type="button"
           data-testid="share-btn"
+          onClick={ (event) => {
+            shareButton(event, pathname.split('/in-progress')[0]);
+            setLinkCopied(true);
+          } }
         >
           <img
             src={ shareBtn }
             alt="share button"
           />
         </button>
+        { linkCopied && <p>Link copied!</p> }
         <button
           type="button"
-          data-testid="favorite-btn"
+          onClick={ (event) => {
+            favoriteButton(event, data, type);
+            setFavImage(favoriteImage(data[`id${type}`]));
+          } }
         >
           <img
-            src={ whiteHeartIcon }
-            alt="not favorited button"
+            src={ favImage }
+            alt="heart"
+            data-testid="favorite-btn"
           />
         </button>
       </span>

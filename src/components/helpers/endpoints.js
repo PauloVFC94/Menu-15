@@ -1,4 +1,6 @@
 import copy from 'clipboard-copy';
+import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../../images/blackHeartIcon.svg';
 
 export const mealsEndpoints = {
   ingredientEndpoint: 'https://www.themealdb.com/api/json/v1/1/filter.php?i=',
@@ -79,7 +81,9 @@ export const favoriteFoodButton = (event, recipes, favorite) => {
   const prevFavorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
   const newFavorites = [...prevFavorites, favoriteObject];
   localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorites));
-  favorite(true);
+  if (favorite) {
+    favorite(true);
+  }
 };
 
 export const favoriteDrinkButton = (event, recipes, favorite) => {
@@ -96,7 +100,9 @@ export const favoriteDrinkButton = (event, recipes, favorite) => {
   const prevFavorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
   const newFavorites = [...prevFavorites, favoriteObj];
   localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorites));
-  favorite(true);
+  if (favorite) {
+    favorite(true);
+  }
 };
 
 export const verifyFavorite = (id) => {
@@ -107,6 +113,37 @@ export const verifyFavorite = (id) => {
   }
   const response = favorites.some((recipes) => recipes.id === id);
   return response;
+};
+
+export const removeFavorite = (event, id, favorite) => {
+  event.preventDefault();
+  const favoriteList = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  const newFavorites = favoriteList.filter((recipes) => recipes.id !== id);
+  localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorites));
+  if (favorite) {
+    favorite(false);
+  }
+};
+
+const mealOrDrinkFavorite = (event, recipe, type) => {
+  if (type === 'Meal') {
+    favoriteFoodButton(event, recipe, null);
+  } else {
+    favoriteDrinkButton(event, recipe, null);
+  }
+};
+
+export const favoriteButton = (event, recipe, type) => {
+  if (verifyFavorite(recipe[`id${type}`])) {
+    removeFavorite(event, recipe[`id${type}`], null);
+  } else {
+    mealOrDrinkFavorite(event, recipe, type);
+  }
+};
+
+export const favoriteImage = (id) => {
+  if (verifyFavorite(id)) return blackHeartIcon;
+  return whiteHeartIcon;
 };
 
 export const verifyDone = (id) => {
@@ -153,28 +190,24 @@ export const verifyinProgressDrink = (id) => {
   return response;
 };
 
-export const shareButton = (event, path) => {
+export const shareButton = (event, path, details) => {
   event.preventDefault();
   const link = `http://localhost:3000${path}`;
   copy(link);
-  const divBtnCopy = document.getElementById('button-div');
-  const messageCopy = document.createElement('p');
-  messageCopy.innerText = 'Link copied!';
-  divBtnCopy.appendChild(messageCopy);
-};
-
-export const removeFavorite = (event, id, favorite) => {
-  event.preventDefault();
-  const favoriteList = JSON.parse(localStorage.getItem('favoriteRecipes'));
-  const newFavorites = favoriteList.filter((recipes) => recipes.id !== id);
-  localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorites));
-  favorite(false);
+  if (details) {
+    const divBtnCopy = document.getElementById('button-div');
+    const messageCopy = document.createElement('p');
+    messageCopy.innerText = 'Link copied!';
+    divBtnCopy.appendChild(messageCopy);
+  }
 };
 
 export const getLink = (detailsRecipe) => {
   const linkYoutube = Object.entries(detailsRecipe)[8][1];
   const idLink = linkYoutube.split('=')[1];
-  console.log(idLink);
   const videoUrl = `https://www.youtube.com/embed/${idLink}`;
   return videoUrl;
 };
+
+export const categoryOrAlcoholic = (type) => (
+  type === 'Meal' ? 'strCategory' : 'strAlcoholic');

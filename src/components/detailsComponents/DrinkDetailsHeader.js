@@ -35,7 +35,7 @@ function DrinkDetailsHeader(props) {
           <button
             className="btn-details"
             type="button"
-            onClick={ (event) => shareFunction(event, path) }
+            onClick={ (event) => shareFunction(event, path, true) }
           >
             <img
               className="img-share"
