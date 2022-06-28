@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import {
-  categoryOrAlcoholic,
-  favoriteButton,
+  alertAdvice, categoryOrAlcoholic, favoriteButton,
   favoriteImage, getEndpointByPathname, shareButton,
 } from '../components/helpers/endpoints';
 import { getIngredients, getMeasures } from '../components/helpers/ingredients';
@@ -39,6 +38,8 @@ function RecipeInProgress({ location: { pathname } }) {
         setFavImage(favoriteImage(recipe[`id${type}`]));
         setLoading(false);
       } catch (error) {
+        global.alert(alertAdvice);
+        setShouldRedirect(true);
         setLoading(false);
       }
     };
@@ -118,8 +119,8 @@ function RecipeInProgress({ location: { pathname } }) {
               checked={ checkedInputs.includes(JSON.stringify(index + 1)) }
             />
             <span>
-              {`${ingredient} ${
-                getMeasures(data)[index] ? `- ${getMeasures(data)[index]}` : ''
+              {`${ingredient}${
+                getMeasures(data)[index] ? ` - ${getMeasures(data)[index]}` : ''
               }`}
             </span>
           </label>
