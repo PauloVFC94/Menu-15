@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import RecipesContext from '../context/RecipesContext';
-import { drinksEndpoints, mealsEndpoints } from './helpers';
+import { drinksEndpoints, mealsEndpoints } from './helpers/endpoints';
 
 function HeaderSearch({ page }) {
   const INITIAL_FILTERS = {

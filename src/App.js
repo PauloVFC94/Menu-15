@@ -16,16 +16,19 @@ import Login from './routes/Login';
 import FoodDetails from './routes/FoodDetails';
 import DrinkDetails from './routes/DrinkDetails';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import RecipeInProgress from './routes/RecipeInProgress';
 
 function App() {
   return (
-    <div className="meals">
+    <div>
       <Switch>
         <Route exact path="/" component={ Login } />
         <Route exact path="/foods" component={ Foods } />
         <Route exact path="/drinks" component={ Drinks } />
-        <Route path="/foods/:recipeId" component={ FoodDetails } />
-        <Route path="/drinks/:recipeId" component={ DrinkDetails } />
+        <Route path="/foods/:recipeId/in-progress" component={ RecipeInProgress } />
+        <Route path="/drinks/:recipeId/in-progress" component={ RecipeInProgress } />
+        <Route exact path="/foods/:recipeId" component={ FoodDetails } />
+        <Route exatc path="/drinks/:recipeId" component={ DrinkDetails } />
         <Route exact path="/explore" component={ Explore } />
         <Route exact path="/explore/foods" component={ ExploreFoods } />
         <Route exact path="/explore/drinks" component={ ExploreDrinks } />

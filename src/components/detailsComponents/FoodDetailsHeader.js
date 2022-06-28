@@ -35,7 +35,7 @@ function FoodDetailsHeader(props) {
           <button
             type="button"
             className="btn-details"
-            onClick={ (event) => shareFunction(event, path) }
+            onClick={ (event) => shareFunction(event, path, true) }
           >
             <img
               src={ shareIcon }

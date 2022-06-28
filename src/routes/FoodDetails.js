@@ -11,7 +11,7 @@ import { getFoodDetails,
   verifyinProgressFood,
   shareButton,
   removeFavorite,
-  getLink } from '../components/helpers';
+  getLink } from '../components/helpers/endpoints';
 import '../components/detailsComponents/FoodDetails.css';
 
 const foodRecomendationURL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
@@ -32,7 +32,7 @@ function FoodDetails({ match: { params: { recipeId } } }) {
       setLink(getLink(foodDetails));
     };
     detailAPI();
-  }, []);
+  }, [foodEndPoint]);
 
   const [loading, setLoading] = useState(false);
   const [recomendation, setRecomendation] = useState([]);
@@ -55,7 +55,6 @@ function FoodDetails({ match: { params: { recipeId } } }) {
     };
     return obj;
   });
-  console.log(recomendationObject);
 
   const [isFavorite, setIsFavorite] = useState(false);
   const [isDone, setIsDone] = useState(false);
@@ -64,7 +63,7 @@ function FoodDetails({ match: { params: { recipeId } } }) {
     setIsFavorite(verifyFavorite(recipeId));
     setIsDone(verifyDone(recipeId));
     setIsInProgress(verifyinProgressFood(recipeId));
-  }, []);
+  }, [recipeId]);
 
   const startRecipeButton = (event) => {
     event.preventDefault();

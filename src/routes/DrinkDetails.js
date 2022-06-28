@@ -10,7 +10,7 @@ import { getDrinkDetails,
   verifyDone,
   verifyinProgressDrink,
   shareButton,
-  removeFavorite } from '../components/helpers';
+  removeFavorite } from '../components/helpers/endpoints';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../components/detailsComponents/DrinkDetails.css';
 
@@ -29,7 +29,7 @@ function DrinkDetails({ match: { params: { recipeId } } }) {
       setDetailsRecipe(drinkDetails);
     };
     detailAPI();
-  }, []);
+  }, [drinkEndPoint]);
   console.log(detailsRecipe);
 
   const [loading, setLoading] = useState(false);
@@ -62,7 +62,7 @@ function DrinkDetails({ match: { params: { recipeId } } }) {
     setIsFavorite(verifyFavorite(recipeId));
     setIsDone(verifyDone(recipeId));
     setIsInProgress(verifyinProgressDrink(recipeId));
-  }, []);
+  }, [recipeId]);
 
   const startRecipeButton = (event) => {
     event.preventDefault();
