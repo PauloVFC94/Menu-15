@@ -1,15 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { RECIPES_LIMIT } from '../components/helpers/endpoints';
+import { drinksEndpoints, RECIPES_LIMIT } from '../components/helpers/endpoints';
 import RecipesContext from '../context/RecipesContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import PrincipalRecipeCard from '../components/PrincipalRecipeCard';
 
 function Drinks() {
-  const { endpoint } = useContext(RecipesContext);
+  const { endpoint, setEndpoint } = useContext(RecipesContext);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setEndpoint(drinksEndpoints.random);
+  }, [setEndpoint]);
 
   useEffect(() => {
     const getData = async () => {

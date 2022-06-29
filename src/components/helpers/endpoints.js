@@ -3,6 +3,7 @@ import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 
 export const mealsEndpoints = {
+  random: 'https://www.themealdb.com/api/json/v1/1/search.php?s=',
   ingredientEndpoint: 'https://www.themealdb.com/api/json/v1/1/filter.php?i=',
   nameEndpoint: 'https://www.themealdb.com/api/json/v1/1/search.php?s=',
   firstLetterEndpoint: 'https://www.themealdb.com/api/json/v1/1/search.php?f=',
@@ -10,6 +11,7 @@ export const mealsEndpoints = {
 };
 
 export const drinksEndpoints = {
+  random: 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=',
   ingredientEndpoint: 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=',
   nameEndpoint: 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=',
   firstLetterEndpoint: 'https://www.thecocktaildb.com/api/json/v1/1/search.php?f=',

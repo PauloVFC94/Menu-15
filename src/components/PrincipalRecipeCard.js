@@ -8,8 +8,9 @@ function PrincipalRecipeCard({ type, recipe, index }) {
         src={ recipe[`str${type}Thumb`] }
         alt={ recipe[`str${type}`] }
         width="200px"
+        data-testid={ `${index}-card-img` }
       />
-      <p>{ recipe[`str${type}`] }</p>
+      <p data-testid={ `${index}-card-name` }>{ recipe[`str${type}`] }</p>
     </span>
   );
 }
