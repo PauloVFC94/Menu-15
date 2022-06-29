@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { drinksEndpoints, mealsEndpoints } from './helpers/endpoints';
+import RecipesContext from '../context/RecipesContext';
 
 const CATEGORIES_INDEX_LIMIT = 5;
 
 function Categories({ type }) {
   const [categories, setCategories] = useState([]);
+  const { setEndpoint } = useContext(RecipesContext);
 
   useEffect(() => {
     const endpoint = `${type === 'meals'
@@ -28,6 +30,18 @@ function Categories({ type }) {
     getCategories();
   }, [type]);
 
+  const changeEndpointByCategory = (category) => {
+    if (category === 'All') {
+      const endpoint = `${type === 'meals'
+        ? mealsEndpoints.random : drinksEndpoints.random}`;
+      setEndpoint(endpoint);
+    } else {
+      const endpoint = `${type === 'meals'
+        ? mealsEndpoints.searchByCategory : drinksEndpoints.searchByCategory}`;
+      setEndpoint(`${endpoint}${category}`);
+    }
+  };
+
   return (
     <span>
       { categories.map((category) => (
@@ -35,6 +49,7 @@ function Categories({ type }) {
           key={ category }
           type="button"
           data-testid={ `${category}-category-filter` }
+          onClick={ () => changeEndpointByCategory(category) }
         >
           { category }
         </button>

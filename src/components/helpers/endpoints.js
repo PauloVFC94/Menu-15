@@ -9,6 +9,7 @@ export const mealsEndpoints = {
   firstLetterEndpoint: 'https://www.themealdb.com/api/json/v1/1/search.php?f=',
   categories: 'https://www.themealdb.com/api/json/v1/1/list.php?c=list',
   searchById: 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=',
+  searchByCategory: 'https://www.themealdb.com/api/json/v1/1/filter.php?c=',
 };
 
 export const drinksEndpoints = {
@@ -18,6 +19,7 @@ export const drinksEndpoints = {
   firstLetterEndpoint: 'https://www.thecocktaildb.com/api/json/v1/1/search.php?f=',
   categories: 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list',
   searchById: 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=',
+  searchByCategory: 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=',
 };
 
 export const alertAdvice = 'Sorry, we have a problem';

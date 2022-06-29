@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import PrincipalRecipeCard from '../components/PrincipalRecipeCard';
 import Categories from '../components/Categories';
+import shouldRedirectToDetails from '../components/helpers/verifiers';
 
 function Foods() {
   const { endpoint, setEndpoint } = useContext(RecipesContext);
@@ -38,7 +39,7 @@ function Foods() {
     getData();
   }, [endpoint]);
 
-  if (data.length === 1) {
+  if (shouldRedirectToDetails(data, endpoint)) {
     const [recipe] = data;
     return <Redirect to={ `/foods/${recipe.idMeal}` } />;
   }
@@ -48,7 +49,7 @@ function Foods() {
       <Header title="Foods" searchIcon page="foods" />
       <Categories type="meals" />
       { loading && <p>Carregando...</p> }
-      { !loading && data.length > 1 && (
+      { !loading && data.length >= 1 && (
         data.slice(0, RECIPES_LIMIT).map((recipe, index) => (
           <PrincipalRecipeCard
             key={ recipe.idMeal }
