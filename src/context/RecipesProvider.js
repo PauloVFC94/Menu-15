@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import RecipesContext from './RecipesContext';
 
+const MEALS_INGREDIENTS = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
+const DRINKS_INGREDIENTS = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
+
+const NUMBER_TWELVE = 12;
+
 function RecipesProvider({ children }) {
   const [hidden, setHidden] = useState(true);
   const [endpoint, setEndpoint] = useState('');
@@ -9,6 +14,29 @@ function RecipesProvider({ children }) {
   const [loginPassword, setLoginPassword] = useState('');
   const [loginButton, setLoginButton] = useState(true);
   const [loginComplete, setLoginComplete] = useState(false);
+  const [mealsIngredients, setMealsIngredients] = useState([]);
+  const [drinksIngredients, setDrinksIngredients] = useState([]);
+
+  function GetByFilter(url, typeFood, func, number) {
+    const apiGetFood = async () => {
+      try {
+        const response = await fetch(url);
+        const dataApi = await response.json();
+        const filterFirst12 = dataApi[typeFood]
+          .filter((food, index) => index < number);
+        if (filterFirst12.length !== 0) {
+          func([...filterFirst12]);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    apiGetFood();
+  }
+
+  GetByFilter(MEALS_INGREDIENTS, 'meals', setMealsIngredients, NUMBER_TWELVE);
+
+  GetByFilter(DRINKS_INGREDIENTS, 'drinks', setDrinksIngredients, NUMBER_TWELVE);
 
   const validateLogin = () => {
     const minPassword = 6;
@@ -52,6 +80,8 @@ function RecipesProvider({ children }) {
     setEndpoint,
     hidden,
     setHidden,
+    mealsIngredients,
+    drinksIngredients,
   };
 
   return (
