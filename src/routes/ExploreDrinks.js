@@ -5,17 +5,17 @@ import Header from '../components/Header';
 
 function ExploreDrinks() {
   const history = useHistory();
-
   const exploreDrinksIgredient = () => {
-    history.push('/explore/Drinks/ingredients');
+    history.push('/explore/drinks/ingredients');
   };
 
   const exploreDrinksSurprise = async () => {
-    const url = 'https://www.themealdb.com/api/json/v1/1/random.php';
+    const url = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
     const response = await fetch(url);
-    const { meals } = await response.json();
-    const id = meals[0].idMeal;
-    history.push(`/Drinks/${id}`);
+    const { drinks } = await response.json();
+    const id = drinks[0].idDrink;
+    console.log(id);
+    history.push(`/drinks/${id}`);
   };
   return (
     <>

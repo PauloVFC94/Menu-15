@@ -1,11 +1,88 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import IngredientCard from '../components/IngredientCard';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
+const NUMBER_TWELVE = 12;
+
 function FoodsNationalities() {
+  const [state, setState] = useState('All');
+  const [listNations, setListNations] = useState([]);
+  const [mealsByNation, setMealsByNation] = useState([]);
+
+  useEffect(() => {
+    const searchNatinalities = async () => {
+      try {
+        const response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?a=list');
+        const { meals } = await response.json();
+        const natinalities = meals.map((nationality) => nationality.strArea);
+        setListNations(['All', ...natinalities]);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    searchNatinalities();
+  }, []);
+
+  const handleChange = ({ target: { value } }) => {
+    setState(value);
+  };
+
+  useEffect(() => {
+    const foodNatinality = async () => {
+      if (state === 'All') {
+        try {
+          const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+          const { meals } = await response.json();
+          const mealsNationality = meals.filter((meal, index) => index < NUMBER_TWELVE);
+          setMealsByNation([...mealsNationality]);
+        } catch (e) {
+          console.log(e);
+        }
+      } else {
+        try {
+          const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${state}`);
+          const { meals } = await response.json();
+          const mealsNationality = meals.filter((meal, index) => index < NUMBER_TWELVE);
+          setMealsByNation([...mealsNationality]);
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    };
+    foodNatinality();
+  }, [state]);
+
   return (
     <>
       <Header title="Explore Nationalities" searchIcon />
+      <select
+        data-testid="explore-by-nationality-dropdown"
+        onChange={ handleChange }
+      >
+        {
+          listNations.map((nation) => (
+            <option
+              key={ nation }
+              data-testid={ `${nation}-option` }
+            >
+              {nation}
+            </option>
+          ))
+        }
+      </select>
+      {
+        mealsByNation.map((food, index) => (
+          <IngredientCard
+            key={ food.idMeal }
+            name={ food.strMeal }
+            imageSrc={ food.strMealThumb }
+            testId={ `${index}-recipe-card` }
+            testImageId={ `${index}-card-img` }
+            testNameId={ `${index}-card-name` }
+          />
+        ))
+      }
       <Footer />
     </>
   );

@@ -5,7 +5,6 @@ import Header from '../components/Header';
 
 function ExploreFoods() {
   const history = useHistory();
-
   const exploreFoodsIgredient = () => {
     history.push('/explore/foods/ingredients');
   };

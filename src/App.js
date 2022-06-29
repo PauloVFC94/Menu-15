@@ -18,7 +18,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <div className="meals">
+    <div>
       <Switch>
         <Route exact path="/" component={ Login } />
         <Route exact path="/foods" component={ Foods } />

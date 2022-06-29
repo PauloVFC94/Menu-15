@@ -2,11 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import RecipesContext from './RecipesContext';
 
-const MEALS_INGREDIENTS = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
-const DRINKS_INGREDIENTS = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
-
-const NUMBER_TWELVE = 12;
-
 function RecipesProvider({ children }) {
   const [hidden, setHidden] = useState(true);
   const [endpoint, setEndpoint] = useState('');
@@ -33,10 +28,6 @@ function RecipesProvider({ children }) {
     };
     apiGetFood();
   }
-
-  GetByFilter(MEALS_INGREDIENTS, 'meals', setMealsIngredients, NUMBER_TWELVE);
-
-  GetByFilter(DRINKS_INGREDIENTS, 'drinks', setDrinksIngredients, NUMBER_TWELVE);
 
   const validateLogin = () => {
     const minPassword = 6;
@@ -81,7 +72,10 @@ function RecipesProvider({ children }) {
     hidden,
     setHidden,
     mealsIngredients,
+    setMealsIngredients,
     drinksIngredients,
+    setDrinksIngredients,
+    GetByFilter,
   };
 
   return (
