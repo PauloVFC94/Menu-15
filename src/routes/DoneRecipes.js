@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
-import RecipeCard from '../components/RecipeCard';
+import DoneRecipeCard from '../components/DoneRecipeCard';
 import './DoneRecipes.css';
 
 function DoneRecipes() {
@@ -68,7 +68,7 @@ function DoneRecipes() {
         ) }
 
       { filteredRecipes.map((recipe, index) => (
-        <RecipeCard
+        <DoneRecipeCard
           copiedMsg={ copiedMsg }
           recipe={ recipe }
           index={ index }
