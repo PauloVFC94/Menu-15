@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { drinksEndpoints, mealsEndpoints } from './helpers/endpoints';
 import RecipesContext from '../context/RecipesContext';
+import '../styles/Categories.css';
 
 const CATEGORIES_INDEX_LIMIT = 5;
 
@@ -30,15 +31,23 @@ function Categories({ type }) {
     getCategories();
   }, [type]);
 
-  const changeEndpointByCategory = (category) => {
-    if (category === 'All') {
+  const changeEndpointByCategory = (category, event) => {
+    const { target: { className } } = event;
+    if (category === 'All' || className === 'clicked') {
       const endpoint = `${type === 'meals'
         ? mealsEndpoints.random : drinksEndpoints.random}`;
       setEndpoint(endpoint);
+      event.target.className = '';
     } else {
       const endpoint = `${type === 'meals'
         ? mealsEndpoints.searchByCategory : drinksEndpoints.searchByCategory}`;
       setEndpoint(`${endpoint}${category}`);
+      const HTMLallButtons = document.getElementsByClassName('clicked');
+      const allButtons = [...HTMLallButtons];
+      allButtons.forEach((element) => {
+        element.className = '';
+      });
+      event.target.className = 'clicked';
     }
   };
 
@@ -49,7 +58,7 @@ function Categories({ type }) {
           key={ category }
           type="button"
           data-testid={ `${category}-category-filter` }
-          onClick={ () => changeEndpointByCategory(category) }
+          onClick={ (event) => changeEndpointByCategory(category, event) }
         >
           { category }
         </button>
