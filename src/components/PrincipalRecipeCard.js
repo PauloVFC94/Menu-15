@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 function PrincipalRecipeCard({ type, recipe, index }) {
+  const [shouldRedirect, setShouldRedirect] = useState(false);
+
+  if (shouldRedirect) return <Redirect to={ `/foods/${recipe[`id${type}`]}` } />;
+
   return (
-    <span data-testid={ `${index}-recipe-card` }>
+    <button
+      type="button"
+      data-testid={ `${index}-recipe-card` }
+      onClick={ () => setShouldRedirect(true) }
+    >
       <img
         src={ recipe[`str${type}Thumb`] }
         alt={ recipe[`str${type}`] }
@@ -11,7 +20,7 @@ function PrincipalRecipeCard({ type, recipe, index }) {
         data-testid={ `${index}-card-img` }
       />
       <p data-testid={ `${index}-card-name` }>{ recipe[`str${type}`] }</p>
-    </span>
+    </button>
   );
 }
 

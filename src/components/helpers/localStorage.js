@@ -12,7 +12,7 @@ export const startInProgressLS = () => {
 export const saveInProgressLS = (id, type, number) => {
   const inProgress = JSON.parse(localStorage.getItem(IN_PROGRESS_KEY));
   const category = inProgress[`${type === 'Meal' ? 'meals' : 'cocktails'}`];
-  if (!Object.keys(category).length) {
+  if (!Object.keys(category).length || category[id] === undefined) {
     category[id] = [];
   }
   const recipe = category[id];

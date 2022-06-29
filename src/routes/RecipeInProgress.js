@@ -106,7 +106,7 @@ function RecipeInProgress({ location: { pathname } }) {
       <span className={ styles.ingredientsBox }>
         { getIngredients(data).map((ingredient, index) => (
           <label
-            key={ ingredient }
+            key={ `${ingredient}${index}` }
             htmlFor={ ingredient }
             data-testid={ `${index}-ingredient-step` }
           >
