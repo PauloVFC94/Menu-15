@@ -5,6 +5,7 @@ import RecipesContext from '../context/RecipesContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import PrincipalRecipeCard from '../components/PrincipalRecipeCard';
+import Categories from '../components/Categories';
 
 function Foods() {
   const { endpoint, setEndpoint } = useContext(RecipesContext);
@@ -22,7 +23,6 @@ function Foods() {
         try {
           const response = await fetch(endpoint);
           const results = await response.json();
-          console.log(results.meals);
           if (!results.meals) {
             global.alert('Sorry, we haven\'t found any recipes for these filters.');
           } else {
@@ -46,6 +46,7 @@ function Foods() {
   return (
     <span>
       <Header title="Foods" searchIcon page="foods" />
+      <Categories type="meals" />
       { loading && <p>Carregando...</p> }
       { !loading && data.length > 1 && (
         data.slice(0, RECIPES_LIMIT).map((recipe, index) => (
