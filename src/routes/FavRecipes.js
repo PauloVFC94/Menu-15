@@ -10,9 +10,6 @@ function FavRecipes() {
   const favoriteRecipeArray = JSON.parse(localStorage.getItem('favoriteRecipes'));
   const favoriteFood = favoriteRecipeArray.filter((item) => item.type === 'food');
   const favoriteDrink = favoriteRecipeArray.filter((item) => item.type === 'drink');
-  console.log(favoriteRecipeArray);
-  console.log(favoriteFood);
-  console.log(favoriteDrink);
   const [array, setArray] = useState(favoriteRecipeArray);
 
   const foodButton = () => {
