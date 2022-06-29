@@ -16,7 +16,7 @@ export const drinksEndpoints = {
   searchById: 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=',
 };
 
-export const alertAdvice = 'Sorry, we had a problem';
+export const alertAdvice = 'Sorry, we have a problem';
 
 export const RECIPES_LIMIT = 12;
 
