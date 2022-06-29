@@ -5,7 +5,9 @@ import { Redirect } from 'react-router-dom';
 function PrincipalRecipeCard({ type, recipe, index }) {
   const [shouldRedirect, setShouldRedirect] = useState(false);
 
-  if (shouldRedirect) return <Redirect to={ `/foods/${recipe[`id${type}`]}` } />;
+  const pathname = type === 'Meal' ? 'foods' : 'drinks';
+
+  if (shouldRedirect) return <Redirect to={ `/${pathname}/${recipe[`id${type}`]}` } />;
 
   return (
     <button
