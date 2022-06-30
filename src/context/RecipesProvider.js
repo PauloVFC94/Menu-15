@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import RecipesContext from './RecipesContext';
 
 function RecipesProvider({ children }) {
@@ -9,6 +10,7 @@ function RecipesProvider({ children }) {
   const [loginPassword, setLoginPassword] = useState('');
   const [loginButton, setLoginButton] = useState(true);
   const [loginComplete, setLoginComplete] = useState(false);
+  const history = useHistory();
   const [mealsIngredients, setMealsIngredients] = useState([]);
   const [drinksIngredients, setDrinksIngredients] = useState([]);
 
@@ -71,6 +73,7 @@ function RecipesProvider({ children }) {
     setEndpoint,
     hidden,
     setHidden,
+    history,
     mealsIngredients,
     setMealsIngredients,
     drinksIngredients,

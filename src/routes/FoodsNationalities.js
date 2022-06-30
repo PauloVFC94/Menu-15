@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import IngredientCard from '../components/IngredientCard';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -9,6 +10,11 @@ function FoodsNationalities() {
   const [state, setState] = useState('All');
   const [listNations, setListNations] = useState([]);
   const [mealsByNation, setMealsByNation] = useState([]);
+  const { history } = useHistory;
+
+  const handleChange = ({ target: { value } }) => {
+    setState(value);
+  };
 
   useEffect(() => {
     const searchNatinalities = async () => {
@@ -23,10 +29,6 @@ function FoodsNationalities() {
     };
     searchNatinalities();
   }, []);
-
-  const handleChange = ({ target: { value } }) => {
-    setState(value);
-  };
 
   useEffect(() => {
     const foodNatinality = async () => {
@@ -52,6 +54,14 @@ function FoodsNationalities() {
     };
     foodNatinality();
   }, [state]);
+
+  const acao = async (foodId) => {
+    const url = `www.themealdb.com/api/json/v1/1/lookup.php?i=${foodId}`;
+    const response = await fetch(url);
+    const { meals } = await response.json();
+    const id = meals[0].idMeal;
+    history.push(`/foods/${id}`);
+  };
 
   return (
     <>
@@ -80,6 +90,7 @@ function FoodsNationalities() {
             testId={ `${index}-recipe-card` }
             testImageId={ `${index}-card-img` }
             testNameId={ `${index}-card-name` }
+            action={ () => { acao(food.idMeal); } }
           />
         ))
       }

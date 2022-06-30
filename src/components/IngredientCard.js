@@ -9,6 +9,8 @@ function IngredientCard({ name, imageSrc, testId, testImageId, testNameId, actio
       onClick={ action }
     >
       <img
+        width="250"
+        height="300"
         src={ imageSrc }
         alt={ `Foto do ${name}` }
         data-testid={ testImageId }
