@@ -1,8 +1,19 @@
 footer {
-  background-color: rgb(115, 115, 115);
+  background-color: #A47631;
+  border-top: 1px solid white;
   bottom: 0;
+  box-shadow: 1px 1px 1px 1px rgba(105, 104, 104, 0.651);
   left: 0;
   position: fixed;
   text-align: center;
   width: 100%;
+}
+
+footer button {
+  background-color: #A47631;
+  border: 0;
+}
+
+footer button img {
+  filter: invert(100%);
 }

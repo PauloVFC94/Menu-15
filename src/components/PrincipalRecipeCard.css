@@ -1,0 +1,20 @@
+.card-container-principal {
+  background-color: #A47631;
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 1px 1px 0 1px rgba(105, 104, 104, 0.651);
+  color: white;
+  margin: 10px;
+  padding: 10px;
+  width: 160px;
+}
+
+.card-principal-image {
+  border-radius: 10px;
+  width: 140px;
+}
+
+.card-recipe-name {
+  font-weight: 700;
+  margin-top: 20px;
+}

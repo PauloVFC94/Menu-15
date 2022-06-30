@@ -1,0 +1,36 @@
+.food-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.food-header {
+  margin-bottom: 100px;
+}
+
+.food-categories {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 360px;
+}
+
+.food-categories button {
+  background-color: #A47631;
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 1px 1px 0 1px rgba(105, 104, 104, 0.651);
+  color: white;
+  height: 30px;
+  margin: 10px;
+  text-shadow: 1px 1px black;
+  width: 100px;
+}
+
+.food-cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}

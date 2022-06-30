@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import './Profile.css';
 
 function Profile() {
   const history = useHistory();
@@ -18,9 +19,11 @@ function Profile() {
 
   return (
     <>
-      <Header title="Profile" />
-      <section>
-        <p data-testid="profile-email">{ user.email }</p>
+      <div className="profile-header">
+        <Header title="Profile" />
+      </div>
+      <section className="profile-user-data">
+        <h4 data-testid="profile-email">{ user.email }</h4>
         <button
           type="button"
           data-testid="profile-done-btn"
