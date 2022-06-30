@@ -3,17 +3,23 @@ import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 
 export const mealsEndpoints = {
+  random: 'https://www.themealdb.com/api/json/v1/1/search.php?s=',
   ingredientEndpoint: 'https://www.themealdb.com/api/json/v1/1/filter.php?i=',
   nameEndpoint: 'https://www.themealdb.com/api/json/v1/1/search.php?s=',
   firstLetterEndpoint: 'https://www.themealdb.com/api/json/v1/1/search.php?f=',
+  categories: 'https://www.themealdb.com/api/json/v1/1/list.php?c=list',
   searchById: 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=',
+  searchByCategory: 'https://www.themealdb.com/api/json/v1/1/filter.php?c=',
 };
 
 export const drinksEndpoints = {
+  random: 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=',
   ingredientEndpoint: 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=',
   nameEndpoint: 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=',
   firstLetterEndpoint: 'https://www.thecocktaildb.com/api/json/v1/1/search.php?f=',
+  categories: 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list',
   searchById: 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=',
+  searchByCategory: 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=',
 };
 
 export const alertAdvice = 'Sorry, we have a problem';
