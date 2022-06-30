@@ -53,9 +53,24 @@ function RecipesProvider({ children }) {
 
   const loginButtonSubmit = (event) => {
     event.preventDefault();
+    const inProgress = {
+      cocktails: {
+      },
+      meals: {
+      },
+    };
     localStorage.setItem('mealsToken', 1);
     localStorage.setItem('cocktailsToken', 1);
     localStorage.setItem('user', JSON.stringify({ email: loginEmail }));
+    if (localStorage.getItem('favoriteRecipes') === null) {
+      localStorage.setItem('favoriteRecipes', JSON.stringify([]));
+    }
+    if (localStorage.getItem('inProgressRecipes') === null) {
+      localStorage.setItem('inProgressRecipes', JSON.stringify(inProgress));
+    }
+    if (localStorage.getItem('doneRecipes') === null) {
+      localStorage.setItem('doneRecipes', JSON.stringify([]));
+    }
     setLoginComplete(true);
   };
 

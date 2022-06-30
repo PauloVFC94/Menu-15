@@ -1,0 +1,21 @@
+.main-div-food-details {
+  display: flex;
+  height: 100%;
+  width: 360px;
+}
+
+.food-instructions {
+  background-color: white;
+  border-radius: 10px;
+  height: 100%;
+  padding: 10px;
+  width: 330px;
+}
+
+.food-ingredients {
+  background-color: white;
+  border-radius: 10px;
+  height: 100%;
+  padding: 10px;
+  width: 330px;
+}

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { RECIPES_LIMIT } from '../components/helpers';
+import { RECIPES_LIMIT } from '../components/helpers/endpoints';
 import RecipeCard from '../components/RecipeCard';
 import RecipesContext from '../context/RecipesContext';
 import Header from '../components/Header';
