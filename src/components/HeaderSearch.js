@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import RecipesContext from '../context/RecipesContext';
 import { drinksEndpoints, mealsEndpoints } from './helpers/endpoints';
+import './HeaderSearch.css';
 
 function HeaderSearch({ page }) {
   const INITIAL_FILTERS = {
@@ -51,53 +52,57 @@ function HeaderSearch({ page }) {
         data-testid="search-input"
         placeholder="Search Recipe"
         onChange={ changeFilters }
+        className="search-input"
       />
-      <label htmlFor="ingredient-search-radio">
-        Ingredient
-        <input
-          id="ingredient-search-radio"
-          type="radio"
-          name="endpoint"
-          value={
-            page === 'foods'
-              ? mealsEndpoints.ingredientEndpoint : drinksEndpoints.ingredientEndpoint
-          }
-          onChange={ changeFilters }
-          data-testid="ingredient-search-radio"
-        />
-      </label>
-      <label htmlFor="name-search-radio">
-        Name
-        <input
-          id="name-search-radio"
-          type="radio"
-          name="endpoint"
-          value={
-            page === 'foods'
-              ? mealsEndpoints.nameEndpoint : drinksEndpoints.nameEndpoint
-          }
-          onChange={ changeFilters }
-          data-testid="name-search-radio"
-        />
-      </label>
-      <label htmlFor="first-letter-search-radio">
-        First Letter
-        <input
-          id="first-letter-search-radio"
-          type="radio"
-          name="endpoint"
-          value={
-            page === 'foods'
-              ? mealsEndpoints.firstLetterEndpoint : drinksEndpoints.firstLetterEndpoint
-          }
-          onChange={ changeFilters }
-          data-testid="first-letter-search-radio"
-        />
-      </label>
+      <div className="search-radio-div">
+        <label htmlFor="ingredient-search-radio">
+          Ingredient
+          <input
+            id="ingredient-search-radio"
+            type="radio"
+            name="endpoint"
+            value={
+              page === 'foods'
+                ? mealsEndpoints.ingredientEndpoint : drinksEndpoints.ingredientEndpoint
+            }
+            onChange={ changeFilters }
+            data-testid="ingredient-search-radio"
+          />
+        </label>
+        <label htmlFor="name-search-radio">
+          Name
+          <input
+            id="name-search-radio"
+            type="radio"
+            name="endpoint"
+            value={
+              page === 'foods'
+                ? mealsEndpoints.nameEndpoint : drinksEndpoints.nameEndpoint
+            }
+            onChange={ changeFilters }
+            data-testid="name-search-radio"
+          />
+        </label>
+        <label htmlFor="first-letter-search-radio">
+          First Letter
+          <input
+            id="first-letter-search-radio"
+            type="radio"
+            name="endpoint"
+            value={
+              page === 'foods'
+                ? mealsEndpoints.firstLetterEndpoint : drinksEndpoints.firstLetterEndpoint
+            }
+            onChange={ changeFilters }
+            data-testid="first-letter-search-radio"
+          />
+        </label>
+      </div>
       <button
         type="button"
         data-testid="exec-search-btn"
         onClick={ filterResults }
+        className="search-recipe-btn"
       >
         Search
       </button>

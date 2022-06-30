@@ -1,25 +1,25 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import RecipesContext from '../context/RecipesContext';
 import HeaderSearch from './HeaderSearch';
 import ProfileIcon from '../images/profileIcon.svg';
 import SearchIcon from '../images/searchIcon.svg';
+import './Header.css';
 
 function Header({ title, searchIcon, page }) {
-  const { hidden, setHidden } = useContext(RecipesContext);
+  const [hidden, setHidden] = useState(true);
 
   const renderSearchIcon = () => (
-    <button type="button" onClick={ () => setHidden(!hidden) }>
+    <button className="header-btn" type="button" onClick={ () => setHidden(!hidden) }>
       <img data-testid="search-top-btn" src={ SearchIcon } alt="Search Icon" />
     </button>
   );
 
   return (
-    <header>
-      <div>
+    <header className="header-header">
+      <div className="header-items">
         <Link to="/profile">
-          <button type="button">
+          <button className="header-btn" type="button">
             <img data-testid="profile-top-btn" src={ ProfileIcon } alt="Profile Icon" />
           </button>
         </Link>

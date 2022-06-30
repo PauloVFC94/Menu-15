@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import PrincipalRecipeCard from '../components/PrincipalRecipeCard';
 import Categories from '../components/Categories';
 import { shouldRedirectToDetails } from '../components/helpers/verifiers';
+import './Food.css';
 
 function Foods() {
   const { endpoint, setEndpoint } = useContext(RecipesContext);
@@ -45,22 +46,28 @@ function Foods() {
   }
 
   return (
-    <span>
-      <Header title="Foods" searchIcon page="foods" />
-      <Categories type="meals" />
-      { loading && <p>Carregando...</p> }
-      { !loading && data.length >= 1 && (
-        data.slice(0, RECIPES_LIMIT).map((recipe, index) => (
-          <PrincipalRecipeCard
-            key={ recipe.idMeal }
-            type="Meal"
-            recipe={ recipe }
-            index={ index }
-          />
-        ))
-      )}
+    <section className="food-div">
+      <div className="food-header">
+        <Header title="Foods" searchIcon page="foods" />
+      </div>
+      <div className="food-categories">
+        <Categories type="meals" />
+      </div>
+      <div className="food-cards">
+        { loading && <p>Carregando...</p> }
+        { !loading && data.length >= 1 && (
+          data.slice(0, RECIPES_LIMIT).map((recipe, index) => (
+            <PrincipalRecipeCard
+              key={ recipe.idMeal }
+              type="Meal"
+              recipe={ recipe }
+              index={ index }
+            />
+          ))
+        )}
+      </div>
       <Footer />
-    </span>
+    </section>
   );
 }
 

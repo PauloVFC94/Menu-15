@@ -10,21 +10,36 @@
   width: 100%;
 }
 
-input {
-  height: 20px;
-  width: 150px;
+.form-login input {
+  border: 0;
+  box-shadow: 1px 1px 0 1px rgba(105, 104, 104, 0.651);
+  height: 30px;
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: center;
+  width: 200px;
 }
 
 .form-login {
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin-top: 200px;
+  margin-top: 80px;
 }
 
 .login-btn {
-  height: 50px;
-  width: 150px;
+  background-color: #a47631;
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 1px 1px 0 1px rgba(105, 104, 104, 0.651);
+  color: white;
+  height: 60px;
+  width: 200px;
+}
+
+.form-login img {
+  margin-bottom: 50px;
+  width: 300px;
 }
 
 .rocksGlass {

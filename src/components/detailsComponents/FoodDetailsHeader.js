@@ -26,50 +26,40 @@ function FoodDetailsHeader(props) {
             data-testid="recipe-photo"
             className="header-div-img"
           />
+        </div>
+      </div>
+      <div className="header-btn-details">
+        <div className="recipe-info-name">
           <h1 data-testid="recipe-title">{ title }</h1>
           <h4 data-testid="recipe-category">{ category }</h4>
         </div>
-      </div>
-      <div id="button-div" className="d-flex flex-row">
-        <div>
-          <button
-            type="button"
+        <div className="btn-details" id="button-div">
+          <input
+            type="image"
             className="btn-details"
             onClick={ (event) => shareFunction(event, path, true) }
-          >
-            <img
-              src={ shareIcon }
-              alt="share-icon"
-              data-testid="share-btn"
-              className="img-share"
-            />
-          </button>
+            src={ shareIcon }
+            alt="share-icon"
+            data-testid="share-btn"
+          />
           { isFavorite ? (
-            <button
-              type="button"
+            <input
+              type="image"
               onClick={ (event) => removeFavorite(event, id, setIsFavorite) }
               className="btn-details"
-            >
-              <img
-                src={ favoriteIcon2 }
-                alt="favorite-icon"
-                data-testid="favorite-btn"
-                className="img-favorite"
-              />
-            </button>
+              src={ favoriteIcon2 }
+              alt="favorite-icon"
+              data-testid="favorite-btn"
+            />
           ) : (
-            <button
+            <input
               className="btn-details"
-              type="button"
+              type="image"
               onClick={ (event) => favoriteFunction(event, details, setIsFavorite) }
-            >
-              <img
-                src={ favoriteIcon }
-                alt="favorite-icon"
-                data-testid="favorite-btn"
-                className="img-favorite"
-              />
-            </button>
+              src={ favoriteIcon }
+              alt="favorite-icon"
+              data-testid="favorite-btn"
+            />
           )}
         </div>
       </div>

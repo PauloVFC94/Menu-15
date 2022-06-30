@@ -1,0 +1,28 @@
+.header-header {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  width: 360px;
+}
+
+.header-items {
+  align-items: center;
+  background-color: #a47631;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px;
+  text-shadow: 1px 1px black;
+  width: 360px;
+}
+
+.header-btn {
+  background-color: #a47631;
+  border: 0;
+}
+
+.header-btn img {
+  filter: invert(100%);
+}
