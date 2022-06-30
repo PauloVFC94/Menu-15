@@ -11,6 +11,25 @@ function RecipesProvider({ children }) {
   const [loginButton, setLoginButton] = useState(true);
   const [loginComplete, setLoginComplete] = useState(false);
   const history = useHistory();
+  const [mealsIngredients, setMealsIngredients] = useState([]);
+  const [drinksIngredients, setDrinksIngredients] = useState([]);
+
+  function GetByFilter(url, typeFood, func, number) {
+    const apiGetFood = async () => {
+      try {
+        const response = await fetch(url);
+        const dataApi = await response.json();
+        const filterFirst12 = dataApi[typeFood]
+          .filter((food, index) => index < number);
+        if (filterFirst12.length !== 0) {
+          func([...filterFirst12]);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    apiGetFood();
+  }
 
   const validateLogin = () => {
     const minPassword = 6;
@@ -70,6 +89,11 @@ function RecipesProvider({ children }) {
     hidden,
     setHidden,
     history,
+    mealsIngredients,
+    setMealsIngredients,
+    drinksIngredients,
+    setDrinksIngredients,
+    GetByFilter,
   };
 
   return (
