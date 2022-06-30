@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import copy from 'clipboard-copy';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
@@ -10,7 +10,26 @@ function FavRecipes() {
   const favoriteRecipeArray = JSON.parse(localStorage.getItem('favoriteRecipes'));
   const favoriteFood = favoriteRecipeArray.filter((item) => item.type === 'food');
   const favoriteDrink = favoriteRecipeArray.filter((item) => item.type === 'drink');
-  const [array, setArray] = useState(favoriteRecipeArray);
+  const [array, setArray] = useState([]);
+  const [load, setLoad] = useState(true);
+
+  const verifyFavExists = () => {
+    const favorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    if (favorites === null) {
+      localStorage.setItem('favoriteRecipes', JSON.stringify([]));
+      return false;
+    }
+  };
+
+  useEffect(() => {
+    const getStorage = async () => {
+      verifyFavExists();
+      const favoriteRecipe = await JSON.parse(localStorage.getItem('favoriteRecipes'));
+      setArray(favoriteRecipe);
+      setLoad(false);
+    };
+    getStorage();
+  }, []);
 
   const foodButton = () => {
     setArray(favoriteFood);
@@ -50,92 +69,97 @@ function FavRecipes() {
   };
 
   return (
-    <div className="favorite-page">
-      <div className="favorite-header">
-        <Header title="Favorite Recipes" className="favorite-header" />
-      </div>
-      <div className="favorite-filter-btn">
-        <button
-          type="button"
-          onClick={ allButton }
-          data-testid="filter-by-all-btn"
-        >
-          All
-        </button>
-        <button
-          type="button"
-          onClick={ foodButton }
-          data-testid="filter-by-food-btn"
-        >
-          Food
-        </button>
-        <button
-          type="button"
-          onClick={ drinkButton }
-          data-testid="filter-by-drink-btn"
-        >
-          Drinks
-        </button>
-      </div>
-      <div className="favorite-recipes">
-        {array.map((item, index) => (
-          <div className="favorite-card" id={ item.id } key={ item.id }>
-            <Link
-              to={ favoriteLink(item.type, item.id) }
-            >
-              <img
-                className="favorite-img"
-                src={ item.image }
-                alt={ item.name }
-                data-testid={ `${index}-horizontal-image` }
-              />
-            </Link>
-            <div className="favorite-itens">
-              <div className="favorite-data">
-                {item.type === 'food' ? (
-                  <p
-                    data-testid={ `${index}-horizontal-top-text` }
+    <div>
+      { load ? (<p>Loading ...</p>)
+        : (
+          <div className="favorite-page">
+            <div className="favorite-header">
+              <Header title="Favorite Recipes" className="favorite-header" />
+            </div>
+            <div className="favorite-filter-btn">
+              <button
+                type="button"
+                onClick={ allButton }
+                data-testid="filter-by-all-btn"
+              >
+                All
+              </button>
+              <button
+                type="button"
+                onClick={ foodButton }
+                data-testid="filter-by-food-btn"
+              >
+                Food
+              </button>
+              <button
+                type="button"
+                onClick={ drinkButton }
+                data-testid="filter-by-drink-btn"
+              >
+                Drinks
+              </button>
+            </div>
+            <div className="favorite-recipes">
+              {array.map((item, index) => (
+                <div className="favorite-card" id={ item.id } key={ item.id }>
+                  <Link
+                    to={ favoriteLink(item.type, item.id) }
                   >
-                    { `${item.nationality} - ${item.category}` }
-                  </p>
-                ) : (
-                  <p
-                    data-testid={ `${index}-horizontal-top-text` }
-                  >
-                    { `${item.category} - ${item.alcoholicOrNot}` }
-                  </p>
-                )}
-                <Link
-                  to={ favoriteLink(item.type, item.id) }
-                >
-                  <h4
-                    className="favorite-name"
-                    data-testid={ `${index}-horizontal-name` }
-                  >
-                    { item.name }
-                  </h4>
-                </Link>
-              </div>
-              <div className="favorite-btn">
-                <input
-                  type="image"
-                  onClick={ (event) => shareButtonFav(event, item.id, item.type) }
-                  data-testid={ `${index}-horizontal-share-btn` }
-                  src={ shareIcon }
-                  alt="Copiar Link"
-                />
-                <input
-                  type="image"
-                  onClick={ (event) => removeFavoriteRecipe(event, item.id) }
-                  data-testid={ `${index}-horizontal-favorite-btn` }
-                  src={ blackHeartIcon }
-                  alt="Desfavoritar"
-                />
-              </div>
+                    <img
+                      className="favorite-img"
+                      src={ item.image }
+                      alt={ item.name }
+                      data-testid={ `${index}-horizontal-image` }
+                    />
+                  </Link>
+                  <div className="favorite-itens">
+                    <div className="favorite-data">
+                      {item.type === 'food' ? (
+                        <p
+                          data-testid={ `${index}-horizontal-top-text` }
+                        >
+                          { `${item.nationality} - ${item.category}` }
+                        </p>
+                      ) : (
+                        <p
+                          data-testid={ `${index}-horizontal-top-text` }
+                        >
+                          { `${item.category} - ${item.alcoholicOrNot}` }
+                        </p>
+                      )}
+                      <Link
+                        to={ favoriteLink(item.type, item.id) }
+                      >
+                        <h4
+                          className="favorite-name"
+                          data-testid={ `${index}-horizontal-name` }
+                        >
+                          { item.name }
+                        </h4>
+                      </Link>
+                    </div>
+                    <div className="favorite-btn">
+                      <input
+                        type="image"
+                        onClick={ (event) => shareButtonFav(event, item.id, item.type) }
+                        data-testid={ `${index}-horizontal-share-btn` }
+                        src={ shareIcon }
+                        alt="Copiar Link"
+                      />
+                      <input
+                        type="image"
+                        onClick={ (event) => removeFavoriteRecipe(event, item.id) }
+                        data-testid={ `${index}-horizontal-favorite-btn` }
+                        src={ blackHeartIcon }
+                        alt="Desfavoritar"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        ))}
-      </div>
+        )}
     </div>
   );
 }
