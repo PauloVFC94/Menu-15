@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import PrincipalRecipeCard from '../components/PrincipalRecipeCard';
 import Categories from '../components/Categories';
+import './Drink.css';
 
 function Drinks() {
   const { endpoint, setEndpoint } = useContext(RecipesContext);
@@ -45,22 +46,28 @@ function Drinks() {
   }
 
   return (
-    <span>
-      <Header title="Drinks" searchIcon page="drinks" />
-      <Categories type="drinks" />
-      { loading && <p>Carregando...</p> }
-      { !loading && data.length > 1 && (
-        data.slice(0, RECIPES_LIMIT).map((recipe, index) => (
-          <PrincipalRecipeCard
-            key={ recipe.idDrink }
-            type="Drink"
-            recipe={ recipe }
-            index={ index }
-          />
-        ))
-      )}
+    <section className="drink-div">
+      <div className="drink-header">
+        <Header title="Drinks" searchIcon page="drinks" />
+      </div>
+      <div className="drink-categories">
+        <Categories type="drinks" />
+      </div>
+      <div className="drink-cards">
+        { loading && <p>Carregando...</p> }
+        { !loading && data.length > 1 && (
+          data.slice(0, RECIPES_LIMIT).map((recipe, index) => (
+            <PrincipalRecipeCard
+              key={ recipe.idDrink }
+              type="Drink"
+              recipe={ recipe }
+              index={ index }
+            />
+          ))
+        )}
+      </div>
       <Footer />
-    </span>
+    </section>
   );
 }
 

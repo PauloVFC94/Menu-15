@@ -113,11 +113,13 @@ function FoodDetails({ match: { params: { recipeId } } }) {
             { detailsRecipe.strInstructions }
           </p>
           <h2>Video</h2>
-          <iframe
-            src={ link }
-            title={ detailsRecipe.strMeal }
-            data-testid="video"
-          />
+          <div className="video-div">
+            <iframe
+              src={ link }
+              title={ detailsRecipe.strMeal }
+              data-testid="video"
+            />
+          </div>
           <h2>Recomendations</h2>
           <div>
             <div id="carousel">

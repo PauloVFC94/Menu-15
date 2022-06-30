@@ -6,19 +6,20 @@
 
 .header-div {
   align-items: center;
-  background-color: #0fa36b;
   display: flex;
   flex-direction: column;
   height: 100%;
-  justify-content: space-between;
-  margin-bottom: 100px;
+  justify-content: center;
+  padding: 10px;
   width: 360px;
 }
 
 .header-div-img {
+  border-radius: 10px;
+  box-shadow: 2px 2px 0 2px rgba(105, 104, 104, 0.651);
   height: 200px;
   margin: 10px;
-  width: 360px;
+  width: 340px;
 }
 
 .header-div header {
@@ -26,16 +27,19 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-bottom: 60px;
 }
 
 .start-recipe-btn {
+  background-color: #a47631;
+  border: 0;
+  border-radius: 10px;
   bottom: 0;
-  color: black;
+  color: white;
   height: 50px;
   left: 0;
   position: fixed;
   text-align: center;
+  text-shadow: 1px 1px black;
   width: 100%;
 }
 
@@ -49,11 +53,27 @@
   width: 30px;
 }
 
+.header-btn-details {
+  align-items: center;
+  background-color: #a47631;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  margin: 10px;
+  padding: 10px;
+  width: 340px;
+}
+
 .btn-details {
-  background-color: rgb(11, 100, 11);
-  height: 50px;
-  margin-bottom: 10px;
-  width: 50px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-details input {
+  filter: invert(100%);
+  margin: 10px;
 }
 
 .drink-title {
@@ -62,20 +82,28 @@
 }
 
 .header-div h2 {
-  background-color: grey;
+  background-color: #a47631;
   border-radius: 10px;
   color: white;
-  margin: 10px;
+  margin-bottom: 10px;
   text-align: center;
   width: 100%;
 }
 
 .button-left {
+  background-color: #a47631;
+  border: 0;
+  border-radius: 100%;
+  color: white;
   height: 50px;
   width: 50px;
 }
 
 .button-right {
+  background-color: #a47631;
+  border: 0;
+  border-radius: 100%;
+  color: white;
   height: 50px;
   width: 50px;
 }
@@ -86,29 +114,36 @@
   flex-direction: row;
   height: 200px;
   justify-content: space-around;
-  width: 360px;
+  margin-bottom: 20px;
+  width: 340px;
 }
 
 .card-carousel {
   align-items: center;
   background-color: white;
   border-radius: 20px;
+  box-shadow: 1px 1px 0 1px rgba(105, 104, 104, 0.651);
+  color: #a47631;
   display: flex;
   flex-direction: column;
-  height: 180px;
+  height: 140px;
   justify-content: center;
-  width: 120px;
+  width: 100px;
 }
 
 .card-carousel img {
-  height: 50px;
-  width: 50px;
+  border-radius: 10px;
+  height: 60px;
+  margin-top: 10px;
+  width: 80px;
 }
 
 .drink-instructions {
   background-color: white;
   border-radius: 10px;
+  box-shadow: 1px 1px 0 1px rgba(105, 104, 104, 0.651);
   height: 100%;
+  margin-bottom: 10px;
   padding: 10px;
   width: 330px;
 }
@@ -116,7 +151,9 @@
 .drink-ingredients {
   background-color: white;
   border-radius: 10px;
+  box-shadow: 1px 1px 0 1px rgba(105, 104, 104, 0.651);
   height: 100%;
+  margin-bottom: 10px;
   padding: 10px;
   width: 330px;
 }

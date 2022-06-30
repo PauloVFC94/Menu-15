@@ -1,13 +1,13 @@
-.food-div {
+.drink-div {
   display: flex;
   flex-direction: column;
 }
 
-.food-header {
+.drink-header {
   margin-bottom: 100px;
 }
 
-.food-categories {
+.drink-categories {
   align-items: center;
   display: flex;
   flex-flow: row wrap;
@@ -15,7 +15,13 @@
   width: 360px;
 }
 
-.food-categories button {
+.drink-categories span {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.drink-categories button {
   background-color: #a47631;
   border: 0;
   border-radius: 10px;
@@ -27,7 +33,7 @@
   width: 115px;
 }
 
-.food-cards {
+.drink-cards {
   display: flex;
   flex-flow: row wrap;
   margin-bottom: 40px;
