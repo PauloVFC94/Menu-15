@@ -32,8 +32,10 @@ function DoneRecipes() {
   }, []);
   return (
     <>
-      <Header title="Done Recipes" />
-      <div>
+      <div className="done-header">
+        <Header title="Done Recipes" />
+      </div>
+      <div className="done-recipe-btn">
         <button
           type="button"
           data-testid="filter-by-all-btn"

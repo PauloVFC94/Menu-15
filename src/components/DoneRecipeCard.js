@@ -13,7 +13,7 @@ function RecipeCard({ copiedMsg, recipe, index }) {
   };
 
   return (
-    <div data-testid={ `${index}-recipe-card` }>
+    <div data-testid={ `${index}-recipe-card` } className="done-card">
       <button
         type="button"
         onClick={ () => history.push(`/${recipe.type}s/${recipe.id}`) }
@@ -26,7 +26,7 @@ function RecipeCard({ copiedMsg, recipe, index }) {
         />
       </button>
 
-      <div>
+      <div className="done-infos">
         { recipe.type === 'food'
           ? (
             <p data-testid={ `${index}-horizontal-top-text` }>
@@ -39,25 +39,20 @@ function RecipeCard({ copiedMsg, recipe, index }) {
           ) }
         <button
           type="button"
-          onClick={ () => copyLink(`http://localhost:3000/${recipe.type}s/${recipe.id}`) }
+          onClick={ () => history.push(`/${recipe.type}s/${recipe.id}`) }
         >
-          <img
-            src={ shareIcon }
-            alt="shareIcon"
-            data-testid={ `${index}-horizontal-share-btn` }
-          />
+          <h5 data-testid={ `${index}-horizontal-name` }>
+            { recipe.name }
+          </h5>
         </button>
+        <input
+          type="image"
+          onClick={ () => copyLink(`http://localhost:3000/${recipe.type}s/${recipe.id}`) }
+          src={ shareIcon }
+          alt="shareIcon"
+          data-testid={ `${index}-horizontal-share-btn` }
+        />
       </div>
-
-      <button
-        type="button"
-        onClick={ () => history.push(`/${recipe.type}s/${recipe.id}`) }
-      >
-        <h5 data-testid={ `${index}-horizontal-name` }>
-          { recipe.name }
-        </h5>
-      </button>
-
       <p data-testid={ `${index}-horizontal-done-date` }>
         { `Done in: ${recipe.doneDate}` }
       </p>

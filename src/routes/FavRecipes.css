@@ -1,21 +1,22 @@
 .favorite-page {
-  background-color: #0fa36b;
+  background-color: white;
   height: 100%;
-  padding: 10px;
-  width: 350px;
+  width: 360px;
 }
 
-.favorite-header header {
+.favorite-header header div {
+  align-items: center;
   display: flex;
   flex-direction: row;
-  height: 40px;
-  justify-content: space-between;
-  width: 300px;
+  justify-content: flex-start;
 }
 
-.favorite-header h2 {
-  margin: 0;
-  width: 200px;
+.favorite-header header div h2 {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-left: 30px;
+  text-align: center;
 }
 
 .favorite-filter-btn {
@@ -23,14 +24,18 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin-right: 30px;
 }
 
 .favorite-filter-btn button {
-  background-color: white;
+  background-color: #a47631;
   border: 0;
   border-radius: 10px;
-  width: 70px;
+  box-shadow: 1px 1px 0 1px rgba(105, 104, 104, 0.651);
+  color: white;
+  height: 40px;
+  margin: 2px;
+  text-shadow: 1px 1px black;
+  width: 115px;
 }
 
 .favorite-card {
@@ -39,31 +44,39 @@
   box-shadow: 1px 1px 1px 1px rgb(107, 107, 107);
   display: flex;
   flex-direction: row;
-  height: 200px;
-  margin: 5px;
+  height: 150px;
+  justify-content: space-around;
+  margin-left: 10px;
   margin-right: 20px;
+  margin-top: 10px;
   padding: 10px;
+  width: 340px;
 }
 
 .favorite-data {
+  align-items: center;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   margin-left: 10px;
+  text-align: center;
 }
 
 .favorite-data p {
+  color: #a47631;
   margin: 0;
 }
 
 .favorite-img {
   border-radius: 10px;
-  height: 150px;
+  height: 120px;
 }
 
 .favorite-itens {
   display: flex;
   flex-direction: column;
   height: 130px;
+  justify-content: center;
 }
 
 .favorite-btn {
@@ -83,5 +96,6 @@
 }
 
 .favorite-name {
-  font-size: 18px;
+  color: #a47631;
+  font-size: 30px;
 }

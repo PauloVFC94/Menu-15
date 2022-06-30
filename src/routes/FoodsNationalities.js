@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import IngredientCard from '../components/IngredientCard';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import './FoodsNationalities.css';
 
 const NUMBER_TWELVE = 12;
 
@@ -65,35 +66,41 @@ function FoodsNationalities() {
 
   return (
     <>
-      <Header title="Explore Nationalities" searchIcon />
-      <select
-        data-testid="explore-by-nationality-dropdown"
-        onChange={ handleChange }
-      >
+      <div className="nationality-header">
+        <Header title="Explore Nationalities" searchIcon />
+      </div>
+      <div className="nationality-input">
+        <select
+          data-testid="explore-by-nationality-dropdown"
+          onChange={ handleChange }
+        >
+          {
+            listNations.map((nation) => (
+              <option
+                key={ nation }
+                data-testid={ `${nation}-option` }
+              >
+                {nation}
+              </option>
+            ))
+          }
+        </select>
+      </div>
+      <div className="nationality-food">
         {
-          listNations.map((nation) => (
-            <option
-              key={ nation }
-              data-testid={ `${nation}-option` }
-            >
-              {nation}
-            </option>
+          mealsByNation.map((food, index) => (
+            <IngredientCard
+              key={ food.idMeal }
+              name={ food.strMeal }
+              imageSrc={ food.strMealThumb }
+              testId={ `${index}-recipe-card` }
+              testImageId={ `${index}-card-img` }
+              testNameId={ `${index}-card-name` }
+              action={ () => { acao(food.idMeal); } }
+            />
           ))
         }
-      </select>
-      {
-        mealsByNation.map((food, index) => (
-          <IngredientCard
-            key={ food.idMeal }
-            name={ food.strMeal }
-            imageSrc={ food.strMealThumb }
-            testId={ `${index}-recipe-card` }
-            testImageId={ `${index}-card-img` }
-            testNameId={ `${index}-card-name` }
-            action={ () => { acao(food.idMeal); } }
-          />
-        ))
-      }
+      </div>
       <Footer />
     </>
   );
