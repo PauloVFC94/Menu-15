@@ -10,6 +10,7 @@ function FoodsNationalities() {
   const [state, setState] = useState('All');
   const [listNations, setListNations] = useState([]);
   const [mealsByNation, setMealsByNation] = useState([]);
+  const history = useHistory();
 
   const handleChange = ({ target: { value } }) => {
     setState(value);
@@ -55,12 +56,11 @@ function FoodsNationalities() {
   }, [state]);
 
   const acao = async (foodId) => {
-    const { history } = useHistory;
     const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${foodId}`;
     const response = await fetch(url);
     const { meals } = await response.json();
-    const id = meals[0].idMeal;
-    history.push(`/foods/${id}`);
+    // console.log(meals[0].idMeal);
+    history.push(`/foods/${meals[0].idMeal}`);
   };
 
   return (
