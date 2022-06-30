@@ -13,6 +13,12 @@ import {
   getCheckedIngredients, removeInProgressLS, saveInProgressLS, startInProgressLS,
 } from '../components/helpers/localStorage';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import {
+  formatDoneRecipe } from '../components/helpers/verifiers';
+
+if (!localStorage.getItem('doneRecipes')) {
+  localStorage.setItem('doneRecipes', '[]');
+}
 
 function RecipeInProgress({ location: { pathname } }) {
   const type = pathname.includes('foods') ? 'Meal' : 'Drink';
@@ -52,6 +58,14 @@ function RecipeInProgress({ location: { pathname } }) {
       removeInProgressLS(data[`id${type}`], type, value);
     }
     setCheckedInputs(getCheckedIngredients(data[`id${type}`], type));
+  };
+
+  const finishRecipe = () => {
+    const doneRecipe = formatDoneRecipe(data, type);
+    const recipesDone = JSON.parse(localStorage.getItem('doneRecipes'));
+    recipesDone.push(doneRecipe);
+    localStorage.setItem('doneRecipes', JSON.stringify(recipesDone));
+    setShouldRedirect(true);
   };
 
   if (loading) return <p>Carregando...</p>;
@@ -137,7 +151,7 @@ function RecipeInProgress({ location: { pathname } }) {
         data-testid="finish-recipe-btn"
         className={ styles.fixedBtn }
         disabled={ numberOfIngredients !== checkedInputs.length }
-        onClick={ () => setShouldRedirect(true) }
+        onClick={ finishRecipe }
       >
         Finish recipe
       </button>

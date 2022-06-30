@@ -6,7 +6,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import PrincipalRecipeCard from '../components/PrincipalRecipeCard';
 import Categories from '../components/Categories';
-import shouldRedirectToDetails from '../components/helpers/verifiers';
+import { shouldRedirectToDetails } from '../components/helpers/verifiers';
 
 function Foods() {
   const { endpoint, setEndpoint } = useContext(RecipesContext);

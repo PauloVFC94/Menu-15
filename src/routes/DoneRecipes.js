@@ -30,7 +30,6 @@ function DoneRecipes() {
     setDoneRecipes(recipes);
     setFilteredRecipes(recipes);
   }, []);
-  console.log(filteredRecipes);
   return (
     <>
       <Header title="Done Recipes" />
