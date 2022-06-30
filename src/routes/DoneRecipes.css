@@ -4,3 +4,77 @@
   margin-bottom: 15px;
   padding: 20px;
 }
+
+.done-header header div {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.done-header header div h2 {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-left: 40px;
+  text-align: center;
+}
+
+.done-recipe-btn {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.done-recipe-btn button {
+  background-color: #a47631;
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 1px 1px 0 1px rgba(105, 104, 104, 0.651);
+  color: white;
+  height: 40px;
+  margin: 2px;
+  text-shadow: 1px 1px black;
+  width: 115px;
+}
+
+.done-card {
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px 1px rgb(107, 107, 107);
+  display: flex;
+  flex-direction: row;
+  height: 150px;
+  justify-content: space-around;
+  margin-left: 10px;
+  margin-right: 20px;
+  margin-top: 10px;
+  padding: 10px;
+  text-align: center;
+  width: 340px;
+}
+
+.done-card button {
+  background-color: white;
+  border: 0;
+  color: #a47631;
+}
+
+.done-card input {
+  width: 30px;
+}
+
+.done-card img {
+  border-radius: 10px;
+  width: 120px;
+}
+
+.done-infos {
+  align-items: center;
+  color: #a47631;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}

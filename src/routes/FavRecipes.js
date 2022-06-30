@@ -51,7 +51,9 @@ function FavRecipes() {
 
   return (
     <div className="favorite-page">
-      <Header title="Favorite Recipes" className="favorite-header" />
+      <div className="favorite-header">
+        <Header title="Favorite Recipes" className="favorite-header" />
+      </div>
       <div className="favorite-filter-btn">
         <button
           type="button"
@@ -106,12 +108,12 @@ function FavRecipes() {
                 <Link
                   to={ favoriteLink(item.type, item.id) }
                 >
-                  <p
+                  <h4
                     className="favorite-name"
                     data-testid={ `${index}-horizontal-name` }
                   >
                     { item.name }
-                  </p>
+                  </h4>
                 </Link>
               </div>
               <div className="favorite-btn">

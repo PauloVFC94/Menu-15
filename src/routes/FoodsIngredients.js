@@ -4,6 +4,7 @@ import RecipesContext from '../context/RecipesContext';
 import IngredientCard from '../components/IngredientCard';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import './FoodsIngredients.css';
 
 function FoodsIngredients() {
   const history = useHistory();
@@ -26,21 +27,25 @@ function FoodsIngredients() {
   }, [GetByFilter, setMealsIngredients]);
   return (
     <>
-      <Header title="Explore Ingredients" />
-      {
-        mealsIngredients.map((ingredient, index) => (
-          // console.log(ingredient, index)
-          <IngredientCard
-            key={ ingredient.idIngredient }
-            name={ ingredient.strIngredient }
-            imageSrc={ `https://www.themealdb.com/images/ingredients/${ingredient.strIngredient}-Small.png` }
-            testId={ `${index}-ingredient-card` }
-            testImageId={ `${index}-card-img` }
-            testNameId={ `${index}-card-name` }
-            action={ () => { acao(ingredient.strIngredient); } }
-          />
-        ))
-      }
+      <div className="foods-ingredients-header">
+        <Header title="Explore Ingredients" />
+      </div>
+      <div className="foods-ingredients-div">
+        {
+          mealsIngredients.map((ingredient, index) => (
+            // console.log(ingredient, index)
+            <IngredientCard
+              key={ ingredient.idIngredient }
+              name={ ingredient.strIngredient }
+              imageSrc={ `https://www.themealdb.com/images/ingredients/${ingredient.strIngredient}-Small.png` }
+              testId={ `${index}-ingredient-card` }
+              testImageId={ `${index}-card-img` }
+              testNameId={ `${index}-card-name` }
+              action={ () => { acao(ingredient.strIngredient); } }
+            />
+          ))
+        }
+      </div>
       <Footer />
     </>
   );

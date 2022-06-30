@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import './ExploreFoods.css';
 
 function ExploreFoods() {
   const history = useHistory();
@@ -23,28 +24,32 @@ function ExploreFoods() {
 
   return (
     <>
-      <Header title="Explore Foods" />
-      <button
-        type="button"
-        data-testId="explore-by-ingredient"
-        onClick={ exploreFoodsIgredient }
-      >
-        By Ingredient
-      </button>
-      <button
-        type="button"
-        data-testId="explore-by-nationality"
-        onClick={ exploreFoodsNationality }
-      >
-        By Nationality
-      </button>
-      <button
-        type="button"
-        data-testId="explore-surprise"
-        onClick={ exploreFoodsSurprise }
-      >
-        Surprise me!
-      </button>
+      <div className="explore-foods-header">
+        <Header title="Explore Foods" />
+      </div>
+      <div className="explore-foods-btn">
+        <button
+          type="button"
+          data-testId="explore-by-ingredient"
+          onClick={ exploreFoodsIgredient }
+        >
+          By Ingredient
+        </button>
+        <button
+          type="button"
+          data-testId="explore-by-nationality"
+          onClick={ exploreFoodsNationality }
+        >
+          By Nationality
+        </button>
+        <button
+          type="button"
+          data-testId="explore-surprise"
+          onClick={ exploreFoodsSurprise }
+        >
+          Surprise me!
+        </button>
+      </div>
       <Footer />
     </>
   );
