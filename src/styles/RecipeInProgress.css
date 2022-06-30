@@ -1,0 +1,90 @@
+.in-progress-div {
+  align-items: center;
+  display: flex;
+  flex-flow: column;
+  width: 360px;
+}
+
+.fixedBtn {
+  bottom: 0;
+  height: 50px;
+  left: 0%;
+  position: fixed;
+  right: 0%;
+  z-index: 999;
+}
+
+.header-in-progress {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  width: 360px;
+}
+
+.in-progress-div h3 {
+  background-color: #a47631;
+  border-radius: 10px;
+  color: white;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 340px;
+}
+
+.header-in-progress-img {
+  border-radius: 10px;
+  box-shadow: 2px 2px 0 2px rgba(105, 104, 104, 0.651);
+  height: 240px;
+  margin: 10px;
+  width: 340px;
+}
+
+.instructions {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 1px 1px 0 1px rgba(105, 104, 104, 0.651);
+  height: 100%;
+  margin-bottom: 60px;
+  padding: 10px;
+  width: 330px;
+}
+
+.ingredient-box {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 1px 1px 0 1px rgba(105, 104, 104, 0.651);
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 330px;
+}
+
+.header-btn-details-progress {
+  align-items: center;
+  background-color: #a47631;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  margin: 10px;
+  padding: 10px;
+  width: 340px;
+}
+
+.btn-details-progress {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-details-progress input {
+  filter: invert(100%);
+  margin: 10px;
+}
+
+:checked + span {
+  text-decoration: line-through;
+}

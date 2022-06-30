@@ -7,7 +7,7 @@ import {
 } from '../components/helpers/endpoints';
 import { getIngredients, getMeasures } from '../components/helpers/ingredients';
 import shareBtn from '../images/shareIcon.svg';
-import styles from '../styles/RecipeInProgress.module.css';
+import '../styles/RecipeInProgress.css';
 import {
   getCheckedIngredients, removeInProgressLS, saveInProgressLS, startInProgressLS,
 } from '../components/helpers/localStorage';
@@ -74,51 +74,50 @@ function RecipeInProgress({ location: { pathname } }) {
   if (shouldRedirect) return <Redirect to="/done-recipes" />;
 
   return (
-    <span>
-      <span className={ styles.header }>
+    <span className="in-progress-div">
+      <span className="header-in-progress">
         <img
           src={ data[`str${type}Thumb`] }
           alt={ `${data[`str${type}`]} thumbnail` }
-          width="200px"
           data-testid="recipe-photo"
-          className={ styles.recipePhoto }
+          className="header-in-progress-img"
         />
-        <h1 data-testid="recipe-title">{ data[`str${type}`] }</h1>
-        <p
-          data-testid="recipe-category"
-        >
-          { data[`${categoryOrAlcoholic(type)}`] }
-        </p>
-        <button
-          type="button"
-          data-testid="share-btn"
-          onClick={ (event) => {
-            shareButton(event, pathname.split('/in-progress')[0]);
-            setLinkCopied(true);
-          } }
-        >
-          <img
-            src={ shareBtn }
-            alt="share button"
-          />
-        </button>
-        { linkCopied && <p>Link copied!</p> }
-        <button
-          type="button"
-          onClick={ (event) => {
-            favoriteButton(event, data, type);
-            setFavImage(favoriteImage(data[`id${type}`]));
-          } }
-        >
-          <img
-            src={ favImage }
-            alt="heart"
-            data-testid="favorite-btn"
-          />
-        </button>
+        <div className="header-btn-details-progress">
+          <div className="recipe-info-progress">
+            <h1 data-testid="recipe-title">{ data[`str${type}`] }</h1>
+            <p
+              data-testid="recipe-category"
+            >
+              { data[`${categoryOrAlcoholic(type)}`] }
+            </p>
+          </div>
+          <div className="btn-details-progress">
+            <input
+              type="image"
+              data-testid="share-btn"
+              onClick={ (event) => {
+                shareButton(event, pathname.split('/in-progress')[0]);
+                setLinkCopied(true);
+              } }
+              src={ shareBtn }
+              alt="share button"
+            />
+            { linkCopied && <p>Link copied!</p> }
+            <input
+              type="image"
+              onClick={ (event) => {
+                favoriteButton(event, data, type);
+                setFavImage(favoriteImage(data[`id${type}`]));
+              } }
+              src={ favImage }
+              alt="heart"
+              data-testid="favorite-btn"
+            />
+          </div>
+        </div>
       </span>
       <h3>Ingredients</h3>
-      <span className={ styles.ingredientsBox }>
+      <span className="ingredient-box">
         { getIngredients(data).map((ingredient, index) => (
           <label
             key={ `${ingredient}${index}` }
@@ -143,14 +142,14 @@ function RecipeInProgress({ location: { pathname } }) {
       <h3>Instructions</h3>
       <p
         data-testid="instructions"
-        className={ styles.instructions }
+        className="instructions"
       >
         { data.strInstructions }
       </p>
       <button
         type="button"
         data-testid="finish-recipe-btn"
-        className={ styles.fixedBtn }
+        className="fixedBtn"
         disabled={ numberOfIngredients !== checkedInputs.length }
         onClick={ finishRecipe }
       >
