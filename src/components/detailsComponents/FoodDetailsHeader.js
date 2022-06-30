@@ -52,7 +52,7 @@ function FoodDetailsHeader(props) {
               data-testid="favorite-btn"
             />
           ) : (
-            <butinputton
+            <input
               className="btn-details"
               type="image"
               onClick={ (event) => favoriteFunction(event, details, setIsFavorite) }
