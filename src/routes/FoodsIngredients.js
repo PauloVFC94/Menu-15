@@ -23,7 +23,7 @@ function FoodsIngredients() {
   };
   useEffect(() => {
     GetByFilter(MEALS_INGREDIENTS, 'meals', setMealsIngredients, NUMBER_TWELVE);
-  }, []);
+  }, [GetByFilter, setMealsIngredients]);
   return (
     <>
       <Header title="Explore Ingredients" />

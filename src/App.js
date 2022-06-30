@@ -38,6 +38,7 @@ function App() {
         <Route exact path="/profile" component={ Profile } />
         <Route exact path="/done-recipes" component={ DoneRecipes } />
         <Route exact path="/favorite-recipes" component={ FavRecipes } />
+        <Route><h1>Not Found</h1></Route>
       </Switch>
     </div>
   );

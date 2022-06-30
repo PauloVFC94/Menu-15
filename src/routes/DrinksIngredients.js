@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
 import IngredientCard from '../components/IngredientCard';
 import Footer from '../components/Footer';
@@ -20,7 +20,7 @@ function DrinksIngredients() {
   };
   useEffect(() => {
     GetByFilter(DRINKS_INGREDIENTS, 'drinks', setDrinksIngredients, NUMBER_TWELVE);
-  }, []);
+  }, [GetByFilter, setDrinksIngredients]);
   return (
     <>
       <Header title="Explore Ingredients" />
